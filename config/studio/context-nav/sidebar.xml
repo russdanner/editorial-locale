@@ -64,7 +64,7 @@
 									<name>wcm-root-folder</name>									
 									<params>
 										<label>Pages (Full)</label>
-										<path>/site/website/en</path>
+										<path>/site/website</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
 									</params>
