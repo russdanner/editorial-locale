@@ -26,10 +26,10 @@
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
     <module-icon-open>
-      <class>fa-shopping-bag</class>
+      <class>fa-globe-asia</class>
     </module-icon-open>
     <module-icon-closed>
-      <class>fa-shopping-bag</class>
+      <class>fa-globe-asia</class>
     </module-icon-closed>
 
 									</params>
