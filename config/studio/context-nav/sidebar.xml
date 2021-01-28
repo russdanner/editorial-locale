@@ -27,9 +27,11 @@
 										<onClick>preview</onClick>
     <module-icon-open>
       <class>fa-shopping-bag</class>
+        <color>#ff0000</color>
     </module-icon-open>
     <module-icon-closed>
       <class>fa-shopping-bag</class>
+        <color>#ff0000</color>
     </module-icon-closed>
     <icon>
       <styles>
