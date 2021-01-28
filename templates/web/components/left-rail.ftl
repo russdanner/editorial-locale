@@ -2,7 +2,7 @@
 <#import "/templates/web/navigation2/navigation.ftl" as nav/>
 
 <#-- hortLocale = locale.getLanguage() -->
-<#assign shortLocale = contentModel.storeUrl?replace("/site/components/","")?substring(2) />
+<#assign shortLocale = (contentModel.storeUrl?replace("/site/components/",""))?substring(0, 2) />
 
 <div id="left-rail" <@studio.componentAttr component=contentModel ice=true iceGroup="left-rail"/>>
   <div class="inner">
