@@ -696,7 +696,7 @@
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/f{locale}//eatures</value>
+							<value>/site/components/{locale}//features</value>
 								<type>undefined</type>
 						</property>
 						<property>
