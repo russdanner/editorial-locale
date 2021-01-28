@@ -165,12 +165,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{locale}headers/</value>
+							<value>/site/components/{locale/}headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{locale}headers/</value>
+							<value>/site/components/{locale}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
