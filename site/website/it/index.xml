@@ -6,15 +6,15 @@
 	<merge-strategy>inherit-levels</merge-strategy>
 	<placeInNav>false</placeInNav>
 	<file-name>index.xml</file-name>
-	<internal-name>Home (it)</internal-name>
+	<internal-name>Home (IT)</internal-name>
 	<orderDefault_f>0.0</orderDefault_f>
 	<objectGroupId>8dba2258</objectGroupId>
 	<objectId>8dba2258-6a57-4187-bd96-8493c7f61a39</objectId>
 	<folder-name>it</folder-name>
 	<createdDate>2017-1-31T16:18:14.000Z</createdDate>
 	<createdDate_dt>2017-1-31T16:18:14.000Z</createdDate_dt>
-	<lastModifiedDate>2021-01-28T23:18:22.428Z</lastModifiedDate>
-	<lastModifiedDate_dt>2021-01-28T23:18:22.428Z</lastModifiedDate_dt>
+	<lastModifiedDate>2021-01-28T23:18:35.858Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-01-28T23:18:35.858Z</lastModifiedDate_dt>
 	<title_t>Editorial</title_t>
 	<hero_text_html>&lt;p&gt;Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.&lt;/p&gt;</hero_text_html>
 	<hero_title_html>&lt;h1&gt;Hi, I&amp;rsquo;m Editorial&lt;/h1&gt;
