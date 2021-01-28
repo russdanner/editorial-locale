@@ -1,7 +1,8 @@
 <#import "/templates/system/common/cstudio-support.ftl" as studio />
 <#import "/templates/web/navigation2/navigation.ftl" as nav/>
 
-<#assign shortLocale = locale.getLanguage() />
+<#-- hortLocale = locale.getLanguage() -->
+<#assign shortLocale = contentModel.storeUrl?replace("/site/website/","")?substring(2) />
 
 <div id="left-rail" <@studio.componentAttr component=contentModel ice=true iceGroup="left-rail"/>>
   <div class="inner">
