@@ -21,4 +21,13 @@
 
 <site>
     <version>2</version>
+   <targeting>
+        <enabled>true</enabled>
+        <rootFolders>/site/website</rootFolders>
+        <excludePatterns>/site/website/index\.xml</excludePatterns>
+        <availableTargetIds>en,fr,it</availableTargetIds>
+        <fallbackTargetId>en</fallbackTargetId>
+        <mergeFolders>false</mergeFolders>
+        <redirectToTargetedUrl>false</redirectToTargetedUrl>
+    </targeting>    
 </site>    
