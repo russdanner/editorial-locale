@@ -1,7 +1,7 @@
 <#import "/templates/system/common/cstudio-support.ftl" as studio />
 <#import "/templates/web/navigation2/navigation.ftl" as nav/>
 
-<#assign shortLocale = locale.class.name />
+<#assign shortLocale = locale.getLanguage() />
 
 <div id="left-rail" <@studio.componentAttr component=contentModel ice=true iceGroup="left-rail"/>>
   <div class="inner">
