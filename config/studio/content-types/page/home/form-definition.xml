@@ -638,12 +638,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{locale}//left-rails/</value>
+							<value>/site/components/{locale}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value></value>
+							<value>/site/components/{locale}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
