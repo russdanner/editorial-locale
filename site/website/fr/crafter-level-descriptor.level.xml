@@ -21,18 +21,18 @@
 	<objectGroupId>585241ef</objectGroupId>
 	<objectId>585241ef-3426-48c2-946f-8aebfb06cfb4</objectId>
 	<folder-name>en</folder-name>
-	<header_o>	<item>	<key>/site/components/it/headers/header.xml</key>
+	<header_o>	<item>	<key>/site/components/fr/headers/header.xml</key>
 	<value>Header</value>
-	<include>/site/components/it/headers/header.xml</include>
+	<include>/site/components/fr/headers/header.xml</include>
 	<disableFlattening>false</disableFlattening>
 	</item></header_o>
 	<createdDate>2017-3-13T20:26:50.000Z</createdDate>
 	<createdDate_dt>2017-3-13T20:26:50.000Z</createdDate_dt>
 	<lastModifiedDate>2017-5-18T15:38:58.000Z</lastModifiedDate>
 	<lastModifiedDate_dt>2017-5-18T15:38:58.000Z</lastModifiedDate_dt>
-	<left-rail_o>	<item>	<key>/site/components/it/left-rails/left-rail-with-no-articles.xml</key>
+	<left-rail_o>	<item>	<key>/site/components/fr/left-rails/left-rail-with-no-articles.xml</key>
 	<value>Left Rail with No Articles</value>
-	<include>/site/components/it/left-rails/left-rail-with-no-articles.xml</include>
+	<include>/site/components/fr/left-rails/left-rail-with-no-articles.xml</include>
 	<disableFlattening>false</disableFlattening>
 	</item></left-rail_o>
 </component>
