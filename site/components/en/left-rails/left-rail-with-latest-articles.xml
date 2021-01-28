@@ -11,15 +11,15 @@
 	<internal-name>Left Rail with Latest Articles</internal-name>
 	<createdDate>2017-3-17T18:23:14.000Z</createdDate>
 	<createdDate_dt>2017-3-17T18:23:14.000Z</createdDate_dt>
-	<lastModifiedDate>2021-01-28T23:03:34.503Z</lastModifiedDate>
-	<lastModifiedDate_dt>2021-01-28T23:03:34.503Z</lastModifiedDate_dt>
-	<widgets_o item-list="true">	<item>	<key>/site/components/articles-widget/latest-articles-widget.xml</key>
-	<value>latest-articles-widget.xml</value>
-	<include>/site/components/articles-widget/latest-articles-widget.xml</include>
+	<lastModifiedDate>2021-01-28T23:05:56.914Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-01-28T23:05:56.914Z</lastModifiedDate_dt>
+	<widgets_o item-list="true">	<item datasource="components">	<key>/site/components/en/contacts/contact-widget.xml</key>
+	<value>Contact Widget</value>
+	<include>/site/components/en/contacts/contact-widget.xml</include>
 	<disableFlattening>false</disableFlattening>
-	</item>	<item>	<key>/site/components/contacts/contact-widget.xml</key>
-	<value>contact-widget.xml</value>
-	<include>/site/components/contacts/contact-widget.xml</include>
+	</item>	<item datasource="components">	<key>/site/components/en/articles-widget/latest-articles-widget.xml</key>
+	<value>Latest Articles Widget</value>
+	<include>/site/components/en/articles-widget/latest-articles-widget.xml</include>
 	<disableFlattening>false</disableFlattening>
 	</item></widgets_o>
 	<localeCode/>
