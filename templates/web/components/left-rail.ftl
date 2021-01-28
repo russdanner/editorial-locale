@@ -14,7 +14,7 @@
     <!-- Menu -->
     <nav id="menu">
       <header class="major">
-        <h2>Menu</h2>
+        <h2>Menu (${locale})</h2>
       </header>
       <ul>
 		<@nav.renderNavigation "/site/website/${locale}" 1 true/>
