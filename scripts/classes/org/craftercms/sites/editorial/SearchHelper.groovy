@@ -26,7 +26,7 @@ import org.elasticsearch.search.sort.SortOrder
 
 class SearchHelper {
 
-  static final String ARTICLE_CONTENT_TYPE_QUERY = "content-type:\"/page/article\""
+  static final String ARTICLE_CONTENT_TYPE_QUERY = "content-type:\"/page/article\"  AND path:\"/site/website/en/*\" "
   static final String[] HIGHLIGHT_FIELDS = ["subject_t", "sections_o.item.section_html"]
   static final int DEFAULT_START = 0
   static final int DEFAULT_ROWS = 10
@@ -40,7 +40,7 @@ class SearchHelper {
   }
 
   def search(userTerm, categories, start = DEFAULT_START, rows = DEFAULT_ROWS) {
-    def q = "${ARTICLE_CONTENT_TYPE_QUERY} AND path:\"/site/website/en/*\" "
+    def q = "${ARTICLE_CONTENT_TYPE_QUERY}"
 
     if (userTerm) {
       if(!userTerm.contains(" ")) {
