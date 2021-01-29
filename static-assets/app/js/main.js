@@ -304,22 +304,7 @@
 				// Search
 				var $query = $('#query');
 
-				$query.keypress(function (e) {
-						var value = $query.val();
-  					if (e.which == 13  && value) {
-							e.preventDefault();
-
-    					window.location.replace("/search-results?q=" + value);
-  					}
-				});
-				
-				$query.autocomplete({
-					minLength: 2,
-					source: '/api/1/services/suggestions.json',
-					select: function(evt, ui) {
-						window.location.replace("/search-results?q=" + ui.item.value);
-					}
-				});
+xxx
 	});
 
 })(jQuery);
