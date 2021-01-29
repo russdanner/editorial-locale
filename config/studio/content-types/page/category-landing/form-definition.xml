@@ -1,27 +1,11 @@
-<!--
-  ~ Copyright (C) 2007-2020 Crafter Software Corporation. All Rights Reserved.
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License version 3 as published by
-  ~ the Free Software Foundation.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <form>
 	<title>Page - Category Landing</title>
 	<description></description>
 	<objectType>page</objectType>
 	<content-type>/page/category-landing</content-type>
 	<imageThumbnail>page-category-landing.png</imageThumbnail>
-    <quickCreate>false</quickCreate>
-    <quickCreatePath></quickCreatePath>
+	<quickCreate>false</quickCreate>
+	<quickCreatePath></quickCreatePath>
 	<properties>		<property>
 			<name>display-template</name>
 			<label>Display Template</label>
@@ -462,18 +446,33 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/headers/</value>
+							<value>/site/components/{locale}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value></value>
+							<value>/site/components/{locale}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>type</name>
 							<value></value>
 								<type>undefined</type>
+						</property>
+						<property>
+							<name>enableCreateNew</name>
+							<value>true</value>
+								<type>boolean</type>
+						</property>
+						<property>
+							<name>enableBrowseExisting</name>
+							<value>true</value>
+								<type>boolean</type>
+						</property>
+						<property>
+							<name>enableSearchExisting</name>
+							<value>false</value>
+								<type>boolean</type>
 						</property>
 					</properties>
 				</datasource>
@@ -503,18 +502,33 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/left-rails/</value>
+							<value>/site/components/{locale}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value></value>
+							<value>/site/components/{locale}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>type</name>
 							<value></value>
 								<type>undefined</type>
+						</property>
+						<property>
+							<name>enableCreateNew</name>
+							<value>true</value>
+								<type>boolean</type>
+						</property>
+						<property>
+							<name>enableBrowseExisting</name>
+							<value>true</value>
+								<type>boolean</type>
+						</property>
+						<property>
+							<name>enableSearchExisting</name>
+							<value>false</value>
+								<type>boolean</type>
 						</property>
 					</properties>
 				</datasource>
