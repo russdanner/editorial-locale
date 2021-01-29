@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <page>
-	<content-type>/page/home</content-type>
+	<content-type>/page/globalentry</content-type>
 	<display-template>/templates/web/pages/home.ftl</display-template>
 	<no-template-required/>
 	<merge-strategy>inherit-levels</merge-strategy>
