@@ -36,7 +36,7 @@
          params.categories = categories;
        }
 
-      var locale = $.urlParam('locale');
+      var locale = $.urlParam('l');
       if (!locale) {
         locale = "en";
       }
