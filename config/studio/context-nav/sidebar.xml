@@ -43,6 +43,10 @@
 										<path>/site/website/fr</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
+										<roles>
+										    <role>admin</role>
+										    <role>site_author_fi</role>
+										</roles>
 									</params>
 								</modulehook>
 
@@ -53,6 +57,10 @@
 										<path>/site/website/it</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
+										<roles>
+										    <role>admin</role>
+										    <role>site_author_fi</role>
+										</roles>
 									</params>
 								</modulehook>
 
@@ -64,6 +72,9 @@
 										<label>Components</label>
 										<path>/site/components</path>
 										<showRootItem>true</showRootItem>
+										<roles>
+										    <role>admin</role>
+										</roles>
 									</params>
 								</modulehook>
 
@@ -75,6 +86,10 @@
 										<path>/site/website</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
+										<roles>
+										    <role>admin</role>
+										    <role>site_author_fi</role>
+										</roles>
 									</params>
 								</modulehook>
 								<!-- Taxonomy -->
