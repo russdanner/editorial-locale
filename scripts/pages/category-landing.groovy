@@ -17,10 +17,14 @@
 import org.craftercms.sites.editorial.SearchHelper
 import org.craftercms.sites.editorial.ProfileUtils
 
+def pageUri = request.getRequestURI()
+def siteLocale = request.getRequestURI().substring(1,3)
+
+
 def segment = ProfileUtils.getSegment(profile, siteItemService)
 def category = contentModel.category_s
 def maxArticles = contentModel.max_articles_i
-def searchHelper = new SearchHelper(elasticsearch, urlTransformationService)
+def searchHelper = new SearchHelper(elasticsearch, urlTransformationService, siteLocale)
 def articles = searchHelper.searchArticles(false, category, segment, 0, maxArticles)
 
 templateModel.articles = articles
