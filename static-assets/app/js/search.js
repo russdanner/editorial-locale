@@ -36,6 +36,8 @@
          params.categories = categories;
        }
 
+       params.locale = "fr";
+       
        $.get("/api/search.json", params).done(function(data) {
          if (data == null) {
            data = [];
