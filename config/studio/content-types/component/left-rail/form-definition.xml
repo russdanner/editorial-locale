@@ -208,7 +208,7 @@
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value></value>
+							<value>/site/components/{locale}</value>
 								<type>undefined</type>
 						</property>
 						<property>
