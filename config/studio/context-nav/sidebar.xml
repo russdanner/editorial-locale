@@ -25,13 +25,12 @@
 										<path>/site/website/en</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
-    <module-icon-open>
-      <class>fa-globe</class>
-    </module-icon-open>
-    <module-icon-closed>
-      <class>fa-globe</class>
-    </module-icon-closed>
-
+                                        <module-icon-open>
+                                          <class>fa-globe</class>
+                                        </module-icon-open>
+                                        <module-icon-closed>
+                                          <class>fa-globe</class>
+                                        </module-icon-closed>
 										<roles>
 											<role>site_author_en</role>
 										</roles>
@@ -46,6 +45,12 @@
 										<path>/site/website/fr</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
+                                        <module-icon-open>
+                                          <class>fa-globe</class>
+                                        </module-icon-open>
+                                        <module-icon-closed>
+                                          <class>fa-globe</class>
+                                        </module-icon-closed>
 										<roles>
 											<role>site_author_fi</role>
 										</roles>
@@ -59,6 +64,12 @@
 										<path>/site/website/it</path>
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
+                                        <module-icon-open>
+                                          <class>fa-globe</class>
+                                        </module-icon-open>
+                                        <module-icon-closed>
+                                          <class>fa-globe</class>
+                                        </module-icon-closed>
 										<roles>
 										    <role>site_author_fi</role>
 										</roles>
