@@ -31,6 +31,10 @@
     <module-icon-closed>
       <class>fa-shopping-bag</class>
     </module-icon-closed>
+										<roles>
+										    <role>site_author_en</role>
+										</roles>
+
 
 									</params>
 									
@@ -44,7 +48,6 @@
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
 										<roles>
-										    <role>admin</role>
 										    <role>site_author_fi</role>
 										</roles>
 									</params>
@@ -58,7 +61,6 @@
 										<showRootItem>true</showRootItem>
 										<onClick>preview</onClick>
 										<roles>
-										    <role>admin</role>
 										    <role>site_author_fi</role>
 										</roles>
 									</params>
