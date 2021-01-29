@@ -309,7 +309,7 @@
   					if (e.which == 13  && value) {
 							e.preventDefault();
 
-    					window.location.replace("/en/search-results?q=" + value + "&l=en");
+    					window.location.replace("/fr/search-results?q=" + value + "&l=fr");
   					}
 				});
 				
@@ -317,7 +317,7 @@
 					minLength: 2,
 					source: '/api/1/services/suggestions.json',
 					select: function(evt, ui) {
-						window.location.replace("/en/search-results?q=" + ui.item.value + "&l=en");
+						window.location.replace("/fr/search-results?q=" + ui.item.value + "&l=fr");
 					}
 				});
 	});
