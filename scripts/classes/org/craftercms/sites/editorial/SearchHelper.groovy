@@ -26,21 +26,23 @@ import org.elasticsearch.search.sort.SortOrder
 
 class SearchHelper {
 
-  static final String ARTICLE_CONTENT_TYPE_QUERY = "content-type:\"/page/article\"  AND localId:\\/site\\/website\\/en\\/*  "
+  static final String ARTICLE_CONTENT_TYPE_QUERY = "content-type:\"/page/article\" "
   static final String[] HIGHLIGHT_FIELDS = ["subject_t", "sections_o.item.section_html"]
   static final int DEFAULT_START = 0
   static final int DEFAULT_ROWS = 10
 
   def elasticsearch
   UrlTransformationService urlTransformationService
+  def locale = "en"
 
-  SearchHelper(elasticsearch, UrlTransformationService urlTransformationService) {
+  SearchHelper(elasticsearch, UrlTransformationService urlTransformationService, locale) {
     this.elasticsearch = elasticsearch
     this.urlTransformationService = urlTransformationService
+    this.locale = locale
   }
 
   def search(userTerm, categories, start = DEFAULT_START, rows = DEFAULT_ROWS) {
-    def q = "${ARTICLE_CONTENT_TYPE_QUERY}"
+    def q = "${ARTICLE_CONTENT_TYPE_QUERY}  AND localId:\\/site\\/website\\/" + this.locale + "\\/* "
 
     if (userTerm) {
       if(!userTerm.contains(" ")) {
