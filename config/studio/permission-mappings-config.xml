@@ -77,6 +77,109 @@
 -->
 <permissions>
     <version>14</version>
+										   
+
+    <role name="site_author_en">
+        <rule regex="/site/website/en/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex="/site/components/en/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex="/static-assets|/static-assets/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex=".*">
+            <allowed-permissions>
+                <permission>S3 Read</permission>
+                <permission>S3 Write</permission>
+                <permission>webdav_read</permission>
+                <permission>webdav_write</permission>
+            </allowed-permissions>
+        </rule>
+    </role>
+
+    <role name="site_author_fi">
+        <rule regex="/site/website/fr/.*|/site/website/it/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex="/site/components/fr/.*|/site/components/it/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex="/static-assets|/static-assets/.*">
+            <allowed-permissions>
+                <permission>Read</permission>
+                <permission>Write</permission>
+                <permission>Create Content</permission>
+                <permission>Create Folder</permission>
+                <permission>list_cmis</permission>
+                <permission>search_cmis</permission>
+                <permission>clone_content_cmis</permission>
+                <permission>upload_content_cmis</permission>
+                <permission>get_children</permission>
+            </allowed-permissions>
+        </rule>
+        <rule regex=".*">
+            <allowed-permissions>
+                <permission>S3 Read</permission>
+                <permission>S3 Write</permission>
+                <permission>webdav_read</permission>
+                <permission>webdav_write</permission>
+            </allowed-permissions>
+        </rule>
+    </role>
+
+
     <role name="author">
         <rule regex="/site/website/.*">
             <allowed-permissions>
