@@ -30,8 +30,8 @@
 	<image_s>/static-assets/images/diets-women-pic.jpg</image_s>
 	<createdDate>2017-3-14T23:41:13.000Z</createdDate>
 	<createdDate_dt>2017-3-14T23:41:13.000Z</createdDate_dt>
-	<lastModifiedDate>2021-01-29T01:42:27.930Z</lastModifiedDate>
-	<lastModifiedDate_dt>2021-01-29T01:42:27.930Z</lastModifiedDate_dt>
+	<lastModifiedDate>2021-01-29T01:43:17.730Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-01-29T01:43:17.730Z</lastModifiedDate_dt>
 	<date_dt>2017-03-14T04:00:00.000Z</date_dt>
 	<localeCode/>
 	<disabled>false</disabled>
@@ -40,6 +40,10 @@
 	<include>/site/components/it/headers/header.xml</include>
 	<disableFlattening>false</disableFlattening>
 	</item></header_o>
-	<left-rail_o item-list="true"/>
+	<left-rail_o item-list="true">	<item datasource="components-left-rail">	<key>/site/components/it/left-rails/left-rail-with-no-articles.xml</key>
+	<value>Left Rail with No Articles</value>
+	<include>/site/components/it/left-rails/left-rail-with-no-articles.xml</include>
+	<disableFlattening>false</disableFlattening>
+	</item></left-rail_o>
 	<date_dt_tz>EST5EDT</date_dt_tz>
 </page>
