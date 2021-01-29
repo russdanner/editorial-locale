@@ -89,7 +89,6 @@
 										<onClick>preview</onClick>
 										<roles>
 										    <role>admin</role>
-										    <role>site_author_fi</role>
 										</roles>
 									</params>
 								</modulehook>
