@@ -36,7 +36,12 @@
          params.categories = categories;
        }
 
-       params.locale = "fr";
+      var locale = $.urlParam('locale');
+      if (!locale) {
+        locale = "en";
+      }
+      
+      params.locale = locale;
        
        $.get("/api/search.json", params).done(function(data) {
          if (data == null) {
