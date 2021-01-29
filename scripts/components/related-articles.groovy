@@ -17,13 +17,16 @@
 import org.craftercms.sites.editorial.SearchHelper
 import org.craftercms.sites.editorial.ProfileUtils
 
+def pageUri = request.getRequestURI()
+def siteLocale = request.getRequestURI().substring(1,3)
+
 def segment = null
 
 if (authToken) {
     segment = ProfileUtils.getSegment(authToken.principal, siteItemService)
 }
 
-def searchHelper = new SearchHelper(elasticsearch, urlTransformationService)
+def searchHelper = new SearchHelper(elasticsearch, urlTransformationService, siteLocale)
 // articleCategories and articlePath should be provided as additionalModel of the component and
 // should be the categories of the current article
 def articles = searchHelper.searchArticles(false, articleCategories, segment, 0, 3, "-localId:\"${articlePath}\"")
