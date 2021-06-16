@@ -5,7 +5,7 @@
 	<content-type>/page/article</content-type>
 	<imageThumbnail>page-article.png</imageThumbnail>
 	<quickCreate>true</quickCreate>
-	<quickCreatePath>/site/website/articles/{year}/{month}</quickCreatePath>
+	<quickCreatePath>/site/website/en/articles/{year}/{month}</quickCreatePath>
 	<properties>		<property>
 			<name>display-template</name>
 			<label>Display Template</label>
