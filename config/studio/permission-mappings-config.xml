@@ -76,7 +76,7 @@
 
 -->
 <permissions>
-   <version>14</version>
+   <version>15</version>
    <role name="site_author_en">
       <rule regex="/site/website/en/.*">
          <allowed-permissions>
