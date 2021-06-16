@@ -98,7 +98,7 @@
 				</field>
 				<field>
 					<type>custom-locale</type>
-					<id>localeCode</id>
+					<id>localeSourceId_s</id>
 					<iceId></iceId>
 					<title>Locale</title>
 					<description></description>
