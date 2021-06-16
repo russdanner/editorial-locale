@@ -28,7 +28,7 @@
 	<sections>		<section>
 			<title>Locale</title>
 			<description></description>
-			<defaultOpen>false</defaultOpen>
+			<defaultOpen>true</defaultOpen>
 			<fields>
 				<field>
 					<type>custom-locale</type>
@@ -145,7 +145,7 @@
 					<type>input</type>
 					<id>internal-name</id>
 					<iceId></iceId>
-					<title>Internal Name z</title>
+					<title>Internal Name</title>
 					<description></description>
 					<defaultValue></defaultValue>
 					<help></help>
