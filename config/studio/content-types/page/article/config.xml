@@ -7,7 +7,7 @@
 	<content-as-folder>true</content-as-folder>
 	<previewable>true</previewable>
 	<quickCreate>true</quickCreate>
-	<quickCreatePath>/site/website/articles/{year}/{month}</quickCreatePath>
+	<quickCreatePath>/site/website/en/articles/{year}/{month}</quickCreatePath>
 	<noThumbnail>false</noThumbnail>
 	<image-thumbnail>page-article.png</image-thumbnail>
 	<paths>
