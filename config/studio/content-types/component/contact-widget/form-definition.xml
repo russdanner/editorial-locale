@@ -103,7 +103,7 @@
                 </constraints>
             </field>
             <field>
-              <type>locale-selector</type>
+              <type>custom-locale</type>
               <id>localeCode</id>
               <iceId></iceId>
               <title>Locale</title>
