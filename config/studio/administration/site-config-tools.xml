@@ -65,7 +65,7 @@
                     <icon>
                         <class>fa-language</class>
                     </icon>
-                </control>                
+                </control>              
                 <control>
                     <name>input</name>
                     <icon>
