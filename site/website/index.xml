@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+	<content-type>/page/globalentry</content-type>
+	<display-template>/templates/web/globalentry.ftl</display-template>
+	<no-template-required/>
+	<merge-strategy>inherit-levels</merge-strategy>
+	<placeInNav>false</placeInNav>
+	<file-name>index.xml</file-name>
+	<internal-name>Global Entry</internal-name>
+	<orderDefault_f>-1</orderDefault_f>
+	<objectGroupId>8d7f</objectGroupId>
+	<objectId>8d7f21fa-5e09-00aa-8340-853b7db302da</objectId>
+	<folder-name/>
+	<createdDate>2017-1-31T16:18:14.000Z</createdDate>
+	<createdDate_dt>2017-1-31T16:18:14.000Z</createdDate_dt>
+	<lastModifiedDate>2021-01-29T03:02:26.183Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-01-29T03:02:26.183Z</lastModifiedDate_dt>
+	<localeCode>en</localeCode>
+	<navLabel>Global Entry</navLabel>
+</page>

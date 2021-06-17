@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+	<content-type>/page/category-landing</content-type>
+	<display-template>/templates/web/pages/category-landing.ftl</display-template>
+	<no-template-required/>
+	<merge-strategy>inherit-levels</merge-strategy>
+	<objectGroupId>102f</objectGroupId>
+	<objectId>102fb288-0dd8-806c-7651-2dd8838ca016</objectId>
+	<header/>
+	<file-name>index.xml</file-name>
+	<folder-name>style</folder-name>
+	<internal-name>Style</internal-name>
+	<title_t>Style</title_t>
+	<placeInNav>true</placeInNav>
+	<orderDefault_f>8000</orderDefault_f>
+	<createdDate>2017-3-13T22:26:52.000Z</createdDate>
+	<createdDate_dt>2017-3-13T22:26:52.000Z</createdDate_dt>
+	<lastModifiedDate>2021-06-16T18:46:55.115Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-06-16T18:46:55.115Z</lastModifiedDate_dt>
+	<left-rail/>
+	<category_s>style</category_s>
+	<max_articles_i>10</max_articles_i>
+	<articles_title_t>Style</articles_title_t>
+	<disabled>false</disabled>
+	<header_o item-list="true"/>
+	<left-rail_o item-list="true"/>
+</page>

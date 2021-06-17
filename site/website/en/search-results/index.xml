@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+	<content-type>/page/search-results</content-type>
+	<display-template>/templates/web/pages/search-results.ftl</display-template>
+	<no-template-required/>
+	<merge-strategy>inherit-levels</merge-strategy>
+	<objectGroupId>864c</objectGroupId>
+	<objectId>864c415c-2c0d-77ad-e42e-50f4f5882cb1</objectId>
+	<file-name>index.xml</file-name>
+	<folder-name>search-results</folder-name>
+	<internal-name>Search Results</internal-name>
+	<title_t>Search Results</title_t>
+	<header/>
+	<left-rail_o item-list="true"/>
+	<createdDate>2017-3-23T23:47:15.000Z</createdDate>
+	<createdDate_dt>2017-3-23T23:47:15.000Z</createdDate_dt>
+	<lastModifiedDate>2021-01-29T01:48:45.414Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-01-29T01:48:45.414Z</lastModifiedDate_dt>
+	<disabled>false</disabled>
+	<categories_o item-list="true">	<item>	<key>/site/taxonomy/categories.xml</key>
+	<value>Categories</value>
+	<include>/site/taxonomy/categories.xml</include>
+	<disableFlattening>false</disableFlattening>
+	</item></categories_o>
+	<localeCode/>
+	<header_o item-list="true"/>
+</page>
