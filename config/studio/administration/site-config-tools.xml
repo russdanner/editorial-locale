@@ -56,17 +56,16 @@
                 </icon>
             </repeatSection>
             <controls>
-                
-    <control>
-        <plugin>
-            <type>control</type>
-            <name>custom-locale</name>
-            <filename>main.js</filename>
-        </plugin>
-        <icon>
-            <class>fa-language</class>
-        </icon>
-    </control>                
+                <control>
+                    <plugin>
+                        <type>control</type>
+                        <name>custom-locale</name>
+                        <filename>main.js</filename>
+                    </plugin>
+                    <icon>
+                        <class>fa-language</class>
+                    </icon>
+                </control>                
                 <control>
                     <name>input</name>
                     <icon>
