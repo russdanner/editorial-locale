@@ -199,10 +199,6 @@
     render: function (config, containerEl) {
       containerEl.id = this.id;
 
-      console.log('render component');
-      console.log(config);
-      console.log(containerEl);
-
       this._renderReactComponent(this);
     },
     getValue: function () {
