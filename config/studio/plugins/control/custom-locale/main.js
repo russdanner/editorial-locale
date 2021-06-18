@@ -220,5 +220,5 @@
       return this.supportedPostFixes;
     }
   });
-  CStudioAuthoring.Module.moduleLoaded('cstudio-forms-controls-custom-locale', CStudioForms.Controls.CustomLocale);
+  CStudioAuthoring.Module.moduleLoaded('custom-locale', CStudioForms.Controls.CustomLocale);
 })();
