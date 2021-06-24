@@ -31,34 +31,6 @@
 			<defaultOpen>true</defaultOpen>
 			<fields>
 				<field>
-					<type>custom-locale</type>
-					<id>localeSourceId_s</id>
-					<iceId></iceId>
-					<title>Locale Source ID</title>
-					<description></description>
-					<defaultValue></defaultValue>
-					<help></help>
-					<properties>
-						<property>
-							<name>datasource</name>
-							<value></value>
-							<type>datasource:item</type>
-						</property>
-						<property>
-							<name>readonly</name>
-							<value></value>
-							<type>boolean</type>
-						</property>
-					</properties>
-					<constraints>
-						<constraint>
-							<name>required</name>
-							<value><![CDATA[false]]></value>
-							<type>boolean</type>
-						</constraint>
-					</constraints>
-				</field>
-				<field>
 					<type>input</type>
 					<id>localeCode_s</id>
 					<iceId></iceId>
@@ -104,6 +76,24 @@
 							<value><![CDATA[]]></value>
 							<type>string</type>
 						</constraint>
+					</constraints>
+				</field>
+				<field>
+					<type>custom-locale</type>
+					<id>localeSourceId_s</id>
+					<iceId></iceId>
+					<title>Locale Source</title>
+					<description></description>
+					<defaultValue></defaultValue>
+					<help></help>
+					<plugin>
+						<type>control</type>
+						<name>custom-locale</name>
+						<filename>main.js</filename>
+					</plugin>
+					<properties>
+					</properties>
+					<constraints>
 					</constraints>
 				</field>
 			</fields>
