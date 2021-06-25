@@ -82,7 +82,7 @@
 					<type>custom-locale</type>
 					<id>localeSourceId_s</id>
 					<iceId></iceId>
-					<title>Locale Source</title>
+					<title>Locale Source ID</title>
 					<description></description>
 					<defaultValue></defaultValue>
 					<help></help>
