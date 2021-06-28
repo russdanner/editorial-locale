@@ -34,7 +34,7 @@
 					<type>input</type>
 					<id>localeCode_s</id>
 					<iceId></iceId>
-					<title>LocaleCode</title>
+					<title>Locale Code</title>
 					<description></description>
 					<defaultValue></defaultValue>
 					<help></help>
