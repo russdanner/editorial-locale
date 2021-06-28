@@ -559,7 +559,7 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{parentPath[2]}/headers/</value>
+							<value>/site/components/{parentPath[0]}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
@@ -597,7 +597,7 @@
 					<properties>
 						<property>
 							<name>contentType</name>
-							<value>/component/feature</value>
+							<value>/component/{parentPath[0]}/feature</value>
 								<type>undefined</type>
 						</property>
 					</properties>
@@ -610,12 +610,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{parentPath[2]}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{parentPath[2]}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
@@ -663,12 +663,12 @@
 						</property>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{parentPath}/features</value>
+							<value>/site/components/{parentPath[0]}/features</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{parentPath}/features</value>
+							<value>/site/components/{parentPath[0]}/features</value>
 								<type>undefined</type>
 						</property>
 						<property>
