@@ -876,12 +876,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{locale}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{locale}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
