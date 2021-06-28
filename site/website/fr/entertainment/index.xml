@@ -15,8 +15,8 @@
 	<folder-name>entertainment</folder-name>
 	<createdDate>2017-3-14T15:23:12.000Z</createdDate>
 	<createdDate_dt>2017-3-14T15:23:12.000Z</createdDate_dt>
-	<lastModifiedDate>2021-06-28T15:41:57.675Z</lastModifiedDate>
-	<lastModifiedDate_dt>2021-06-28T15:41:57.675Z</lastModifiedDate_dt>
+	<lastModifiedDate>2021-06-28T16:09:46.251Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-06-28T16:09:46.251Z</lastModifiedDate_dt>
 	<left-rail/>
 	<category_s>entertainment</category_s>
 	<max_articles_i>10</max_articles_i>
@@ -24,6 +24,4 @@
 	<header_o item-list="true"/>
 	<left-rail_o item-list="true"/>
 	<disabled>false</disabled>
-	<localeCode_s>fr</localeCode_s>
-	<localeSourceId_s>1b43a2ff-6673-7139-a3f1-b2f3ebbac965</localeSourceId_s>
 </page>
