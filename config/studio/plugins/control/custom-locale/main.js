@@ -119,10 +119,12 @@
 
       return '';
     },
-    _getGraphqlContentType: function (contentType) {
-      if (!contentType) return '';
-      return contentType.toLocaleLowerCase().replace(/^\//, '').replace(/\//g, '_');
-    },
+
+    // TODO: Remove this. We don't need to query these
+    // _getGraphqlContentType: function (contentType) {
+    //   if (!contentType) return '';
+    //   return contentType.toLocaleLowerCase().replace(/^\//, '').replace(/\//g, '_');
+    // },
     _updateUUID: function (obj) {
       const newUUID = CStudioAuthoring.Utils.generateUUID();
       obj.form.updateModel('localeSourceId_s', newUUID);
@@ -131,7 +133,8 @@
     _renderReactComponent: function (obj) {
       const pathLocale = this._getLocaleFromPath(obj.form.path);
 
-      const graphqlContentType = this._getGraphqlContentType(obj.form.model['content-type']);
+      //TODO REMOVE: We don't need to query this
+      //const graphqlContentType = this._getGraphqlContentType(obj.form.model['content-type']);
 
       const {
         localeCode_s: localeCode,
@@ -170,24 +173,37 @@
       // search for existing localeSourceId
 
 
-      fetch(`${window.location.origin}/api/1/site/graphql`, {
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: `{\"query\":\"query SearchLocale {\\n  ${graphqlContentType} {\\n    items {\\n      localeCode_s(filter: {equals: \\\"${obj.form.model.localeCode_s}\\\"})\\n      localeSourceId_s(filter: {equals: \\\"${obj.form.model.localeSourceId_s}\\\"})\\n    }\\n  }\\n}\\n\",\"variables\":null,\"operationName\":\"SearchLocale\"}`,
-        'method': 'POST',
-        'credentials': 'include'
-      }).then(response => response.json()).then(data => {
-        const locale = {
-          localeCode: pathLocale,
-          localeSourceId: obj.form.model.localeSourceId_s
-        }; // more than 1 record with same locale code is considered as a new copied is created.
+      const locale = {
+           localeCode: pathLocale,
+           localeSourceId: obj.form.model.localeSourceId_s
+      }; 
 
-        if (data && data.data[graphqlContentType].items && data.data[graphqlContentType].items.length >= 2) {
-          locale.localeSourceId = CStudioAuthoring.Utils.generateUUID();
-          obj.form.updateModel('localeCode_s', locale.localeCode);
-          obj.form.updateModel('localeSourceId_s', locale.localeSourceId);
-        }
+      // TODO: Remove this. We don't need to query these
+      // fetch(`${window.location.origin}/api/1/site/graphql`, {
+      //   headers: {
+      //     'content-type': 'application/json'
+      //   },
+      //   body: `{\"query\":\"query SearchLocale {\\n  ${graphqlContentType} {\\n    items {\\n      localeCode_s(filter: {equals: \\\"${obj.form.model.localeCode_s}\\\"})\\n      localeSourceId_s(filter: {equals: \\\"${obj.form.model.localeSourceId_s}\\\"})\\n    }\\n  }\\n}\\n\",\"variables\":null,\"operationName\":\"SearchLocale\"}`,
+      //   'method': 'POST',
+      //   'credentials': 'include'
+      // }).then(response => response.json()).then(data => {
+      //   const locale = {
+      //     localeCode: pathLocale,
+      //     localeSourceId: obj.form.model.localeSourceId_s
+      //   }; // more than 1 record with same locale code is considered as a new copied is created.
+
+       // if (data && data.data[graphqlContentType].items && data.data[graphqlContentType].items.length >= 2) {
+       //   locale.localeSourceId = CStudioAuthoring.Utils.generateUUID();
+       //   obj.form.updateModel('localeCode_s', locale.localeCode);
+       //   obj.form.updateModel('localeSourceId_s', locale.localeSourceId);
+       // }
+       
+       if(obj.form.model.localeSourceId_s && obj.form.model.localeCode_s == pathLocale) {
+          // if the source id is not null and the locale code is the same then this is a copy paste
+          // for the sake of prototype.  We need to generate a new localeSourceid
+          locale.localeSourceId = CStudioAuthoring.Utils.generateUUID();  
+       }
+
 
         ReactDOM.unmountComponentAtNode(obj.containerEl);
         ReactDOM.render(React.createElement(CustomLocale, {
