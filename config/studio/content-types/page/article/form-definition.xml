@@ -41,7 +41,7 @@
 					<properties>
 						<property>
 							<name>size</name>
-							<value>50</value>
+							<value>0</value>
 							<type>int</type>
 						</property>
 						<property>
