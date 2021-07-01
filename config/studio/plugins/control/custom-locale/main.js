@@ -24,30 +24,14 @@
       setIsOpen(false);
     };
 
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      class: "container input-control cstudio-form-field-container",
-      id: "localeCode"
-    }, /*#__PURE__*/React.createElement("span", {
-      class: "cstudio-form-field-title"
-    }, "Locale Code"), /*#__PURE__*/React.createElement("div", {
-      class: "cstudio-form-control-input-container"
-    }, /*#__PURE__*/React.createElement("span", {
-      class: "validation-hint cstudio-form-control-validation fa"
-    }), /*#__PURE__*/React.createElement("input", {
-      class: "datum cstudio-form-control-input",
-      size: "50",
-      disabled: "disabled",
-      value: locale.localeCode
-    }), /*#__PURE__*/React.createElement("div", {
-      class: "char-count cstudio-form-control-input-count"
-    }, locale.localeCode.length, " / 50"), /*#__PURE__*/React.createElement("div", {
-      class: "cstudio-form-control-input-url-err"
-    }, "The value entered is not allowed in this field.")), /*#__PURE__*/React.createElement("span", {
-      class: "description cstudio-form-field-description"
-    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      class: "container input-control cstudio-form-field-container",
-      id: "localeCode"
-    }, /*#__PURE__*/React.createElement("span", {
+    const timer = setInterval(() => {
+      if (typeof $ !== 'function') return;
+      if (!$('#localeCode_s').find('input')[0]) return;
+      $('#localeCode_s').find('input')[0].value = locale.localeCode;
+      $('#localeCode_s').find('.cstudio-form-control-input-count')[0].innerHTML = `${locale.localeCode.length} / 50`;
+      clearInterval(timer);
+    }, 100);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
       class: "cstudio-form-field-title"
     }, "Locale Source ID"), /*#__PURE__*/React.createElement("div", {
       class: "cstudio-form-control-input-container"
@@ -64,7 +48,7 @@
       class: "cstudio-form-control-input-url-err"
     }, "The value entered is not allowed in this field.")), /*#__PURE__*/React.createElement("span", {
       class: "description cstudio-form-field-description"
-    }))), /*#__PURE__*/React.createElement("button", {
+    }), /*#__PURE__*/React.createElement("button", {
       style: {
         float: 'right'
       },
@@ -119,10 +103,6 @@
 
       return '';
     },
-    _getGraphqlContentType: function (contentType) {
-      if (!contentType) return '';
-      return contentType.toLocaleLowerCase().replace(/^\//, '').replace(/\//g, '_');
-    },
     _updateUUID: function (obj) {
       const newUUID = CStudioAuthoring.Utils.generateUUID();
       obj.form.updateModel('localeSourceId_s', newUUID);
@@ -130,8 +110,6 @@
     },
     _renderReactComponent: function (obj) {
       const pathLocale = this._getLocaleFromPath(obj.form.path);
-
-      const graphqlContentType = this._getGraphqlContentType(obj.form.model['content-type']);
 
       const {
         localeCode_s: localeCode,
@@ -167,23 +145,24 @@
         }), obj.containerEl);
         return;
       } // item copied to same locale or just editing
-      // search for existing localeSourceId
+      // search for existing localeSourceId with different objectId
 
 
-      fetch(`${window.location.origin}/api/1/site/graphql`, {
+      const searchUrl = `${window.location.origin}/api/plugins/control/custom-locale/locale-search.json?uuid=${obj.form.model.localeSourceId_s}&objectId=${obj.form.model.objectId}`;
+      fetch(searchUrl, {
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          [CStudioAuthoringContext.xsrfHeaderName]: CrafterCMSNext.util.auth.getRequestForgeryToken()
         },
-        body: `{\"query\":\"query SearchLocale {\\n  ${graphqlContentType} {\\n    items {\\n      localeCode_s(filter: {equals: \\\"${obj.form.model.localeCode_s}\\\"})\\n      localeSourceId_s(filter: {equals: \\\"${obj.form.model.localeSourceId_s}\\\"})\\n    }\\n  }\\n}\\n\",\"variables\":null,\"operationName\":\"SearchLocale\"}`,
-        'method': 'POST',
+        method: 'GET',
         'credentials': 'include'
       }).then(response => response.json()).then(data => {
         const locale = {
           localeCode: pathLocale,
           localeSourceId: obj.form.model.localeSourceId_s
-        }; // more than 1 record with same locale code is considered as a new copied is created.
+        }; // 1 or more records with same locale code is considered as a new copied is created.
 
-        if (data && data.data[graphqlContentType].items && data.data[graphqlContentType].items.length >= 2) {
+        if (data && data >= 1) {
           locale.localeSourceId = CStudioAuthoring.Utils.generateUUID();
           obj.form.updateModel('localeCode_s', locale.localeCode);
           obj.form.updateModel('localeSourceId_s', locale.localeSourceId);
