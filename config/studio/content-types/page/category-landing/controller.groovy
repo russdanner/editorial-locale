@@ -14,16 +14,91 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import scripts.libs.CommonLifecycleApi;
+import scripts.libs.CommonLifecycleApi
+import java.util.UUID
+import groovy.util.logging.Slf4j
+import org.dom4j.DocumentHelper
 
-def contentLifecycleParams =[:];
-contentLifecycleParams.site = site;
-contentLifecycleParams.path = path;
-contentLifecycleParams.user = user;
-contentLifecycleParams.contentType = contentType;
-contentLifecycleParams.contentLifecycleOperation = contentLifecycleOperation;
-contentLifecycleParams.contentLoader = contentLoader;
-contentLifecycleParams.applicationContext = applicationContext;
+@Slf4j
+class LocaleFieldsOnCopyContentTypeHook {
 
-def controller = new CommonLifecycleApi(contentLifecycleParams);
-controller.execute();
+    def site
+    def path
+    def contentLoader
+    def applicationContext
+
+    def getLocaleFromPath(path) {
+        def matcher = (path =~ /^\/site\/[^\/]+\/([^\/]+)\//)
+        if (matcher) {
+            return matcher.group(1)
+        } else {
+            return ''
+        }
+    }
+
+    def updateElement(name, text, elem, rootElem) {
+        if (elem) {
+            elem.text = text
+        } else {
+            def newElem = DocumentHelper.createElement(name)
+                newElem.text = text
+
+            rootElement.add(newElem)        
+        }
+    }    
+
+    def run() {
+        log.info("Running {} for path {}", getClass().getSimpleName(), path)
+
+        def contentService = applicationContext.getBean("cstudioContentService")
+        def document = contentLoader.getContent(site, path)
+        def rootElem = document.rootElement
+        def localeCodeElem = rootElem.selectSingleNode("localeCode_s")
+        def localeSourceIdElem = rootElem.selectSingleNode("localeSourceId_s")
+        def pathLocaleCode = getLocaleFromPath(path)
+
+        if (localeCodeElem && localeCodeElem.text) {
+            if (localeCodeElem.text != pathLocaleCode) {
+                // If the locale is different, update the locale, and keep the locale source ID
+                log.info("Original locale ({}) is different from current locale in path ({}). Updating the locale field", 
+                    localeCodeElem.text, pathLocaleCode)
+
+                updateElement("localeCode_s", pathLocaleCode, localeCodeElem, rootElem)            
+            } else {
+                // If the locale is the same, create a new locale source ID
+                log.info("Original locale ({}) is the same as current locale in path ({}). Generating new locale source ID",
+                    localeCodeElem.text, pathLocaleCode)
+
+                updateElement("localeSourceId_s", UUID.randomUUID().toString(), localeSourceIdElem, rootElem)
+            }
+        }
+
+        // Write content
+        def is = new ByteArrayInputStream(document.asXML().getBytes('UTF-8'))
+            contentService.writeContent(site, path, is)
+    }
+
+}
+
+def contentLifecycleParams =[:]
+    contentLifecycleParams.site = site
+    contentLifecycleParams.path = path
+    contentLifecycleParams.user = user
+    contentLifecycleParams.contentType = contentType
+    contentLifecycleParams.contentLifecycleOperation = contentLifecycleOperation
+    contentLifecycleParams.contentLoader = contentLoader
+    contentLifecycleParams.applicationContext = applicationContext
+
+// Only run if it's a copy or a duplicate
+if (contentLifecycleOperation == "COPY" || contentLifecycleOperation == "DUPLICATE") {
+    def hook = new LocaleFieldsOnCopyContentTypeHook()
+        hook.site = site
+        hook.path = path
+        hook.contentLoader = contentLoader
+        hook.applicationContext = applicationContext
+
+    hook.run()
+}
+
+def controller = new CommonLifecycleApi(contentLifecycleParams)
+controller.execute()
