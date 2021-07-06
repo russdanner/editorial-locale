@@ -94,7 +94,8 @@
     },
     _getLocaleFromPath: function (path) {
       if (!path) return '';
-      const pathStr = path.toLowerCase().replace(/^\/site\/website\//, '');
+
+      const pathStr = path.toLowerCase().replace(/^\/site\/[^\/]+\//, '');
       const localeCode = pathStr.split('/')[0];
 
       if (this._getLocaleList().indexOf(localeCode) >= 0) {
@@ -109,14 +110,9 @@
       return newUUID;
     },
     _renderReactComponent: function (obj) {
-      const pathLocale = this._getLocaleFromPath(obj.form.path);
+      const pathLocale = this._getLocaleFromPath(obj.form.path)
 
-      const {
-        localeCode_s: localeCode,
-        localeSourceId_s: localeSourceId
-      } = obj.form.model; // new item
-
-      if (!localeSourceId) {
+      if (!obj.form.model.localeSourceId_s) {
         const locale = {
           localeCode: pathLocale,
           localeSourceId: CStudioAuthoring.Utils.generateUUID()
@@ -129,51 +125,19 @@
           updateUUID: () => this._updateUUID(obj)
         }), obj.containerEl);
         return;
-      } // item copied to different locale
+      } // new item
 
+      const locale = {
+        localeCode: pathLocale,
+        localeSourceId: obj.form.model.localeSourceId_s
+      };
 
-      if (pathLocale && pathLocale !== localeCode) {
-        const locale = {
-          localeCode: pathLocale,
-          localeSourceId: obj.form.model.localeSourceId_s
-        };
-        obj.form.updateModel('localeCode_s', locale.localeCode);
-        ReactDOM.unmountComponentAtNode(obj.containerEl);
-        ReactDOM.render(React.createElement(CustomLocale, {
-          locale,
-          updateUUID: () => this._updateUUID(obj)
-        }), obj.containerEl);
-        return;
-      } // item copied to same locale or just editing
-      // search for existing localeSourceId with different objectId
-
-
-      const searchUrl = `${window.location.origin}/api/plugins/control/custom-locale/locale-search.json?uuid=${obj.form.model.localeSourceId_s}&objectId=${obj.form.model.objectId}`;
-      fetch(searchUrl, {
-        headers: {
-          'content-type': 'application/json',
-          [CStudioAuthoringContext.xsrfHeaderName]: CrafterCMSNext.util.auth.getRequestForgeryToken()
-        },
-        method: 'GET',
-        'credentials': 'include'
-      }).then(response => response.json()).then(data => {
-        const locale = {
-          localeCode: pathLocale,
-          localeSourceId: obj.form.model.localeSourceId_s
-        }; // 1 or more records with same locale code is considered as a new copied is created.
-
-        if (data && data >= 1) {
-          locale.localeSourceId = CStudioAuthoring.Utils.generateUUID();
-          obj.form.updateModel('localeCode_s', locale.localeCode);
-          obj.form.updateModel('localeSourceId_s', locale.localeSourceId);
-        }
-
-        ReactDOM.unmountComponentAtNode(obj.containerEl);
-        ReactDOM.render(React.createElement(CustomLocale, {
-          locale,
-          updateUUID: () => this._updateUUID(obj)
-        }), obj.containerEl);
-      });
+      obj.form.updateModel('localeCode_s', locale.localeCode);
+      ReactDOM.unmountComponentAtNode(obj.containerEl);
+      ReactDOM.render(React.createElement(CustomLocale, {
+        locale,
+        updateUUID: () => this._updateUUID(obj)
+      }), obj.containerEl);
     },
     render: function (config, containerEl) {
       containerEl.id = this.id;
