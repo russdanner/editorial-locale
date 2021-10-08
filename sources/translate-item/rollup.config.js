@@ -52,12 +52,12 @@ const plugins = [
   // If using the watch, you could also use these two in conjunction
   // to build, copy and commit so you can refresh browser and see changes.
   copy({
-    targets: [{ src: 'build/*', dest: '../../config/studio/plugins/sidebar/copy-item' }],
+    targets: [{ src: 'build/*', dest: '../../config/studio/plugins/sidebar/translate-item' }],
     hook: 'writeBundle'
   }),
   commit({
     targets: [
-      '../../config/studio/plugins/sidebar/copy-item/index.js'
+      '../../config/studio/plugins/sidebar/translate-item/index.js'
     ]
   })
 ];

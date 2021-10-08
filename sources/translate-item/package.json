@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@craftercms/copy-item-plugin",
+  "name": "@craftercms/translate-item-plugin",
   "version": "1.0.0",
   "main": "build/modern.cjs.js",
   "module": "build/modern.esm.js",

@@ -18,7 +18,7 @@ import App from './App';
 import { render } from 'react-dom';
 import { createElement } from 'react';
 
-CStudioAuthoring.Module.moduleLoaded('copy-item', {
+CStudioAuthoring.Module.moduleLoaded('translate-item', {
   initialize(config) {
     if (config && config.params) {
       switch (config.params.widget) {

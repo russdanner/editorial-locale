@@ -21117,7 +21117,7 @@
     // as the regeneratorRuntime namespace. Otherwise create a new empty
     // object. Either way, the resulting object will be used to initialize
     // the regeneratorRuntime variable at the top of this file.
-     module.exports 
+     module.exports
   ));
 
   try {
@@ -22943,7 +22943,7 @@
 
   var API_GET_ITEM_TREE = '/studio/api/1/services/api/1/content/get-items-tree.json';
   var API_GET_ITEM = '/studio/api/1/services/api/1/content/get-item.json';
-  var API_CLIPBOARD_COPY = '/studio/api/1/services/api/1/clipboard/copy-item.json';
+  var API_CLIPBOARD_COPY = '/studio/api/1/services/api/1/clipboard/translate-item.json';
   var API_CLIPBOARD_PASTE = '/studio/api/1/services/api/1/clipboard/paste-item.json';
   var StudioAPI = {
     origin: function origin() {
@@ -23593,7 +23593,7 @@
    * You should have received a copy of the GNU General Public License
    * along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-  CStudioAuthoring.Module.moduleLoaded('copy-item', {
+  CStudioAuthoring.Module.moduleLoaded('translate-item', {
     initialize: function initialize(config) {
       if (config && config.params) {
         switch (config.params.widget) {
