@@ -130,7 +130,7 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <Button sx={{ minWidth: '100px'}} variant="contained" onClick={handleCopy} color="primary">Copy</Button>
+          <Button sx={{ minWidth: '100px'}} variant="contained" onClick={handleCopy} color="primary">Translate</Button>
           <Button sx={{ minWidth: '100px'}} variant="outlined" onClick={handleClose} color="primary">Cancel</Button>
         </DialogActions>
       </Dialog>
