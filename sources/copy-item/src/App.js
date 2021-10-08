@@ -15,6 +15,9 @@
  */
 
 import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -62,10 +65,22 @@ export default function App() {
     }
   }, []);
 
-  React.useEffect(() => {
+  const handleContentMenuChanged = () => {
     const items = StudioAPI.getSelectedItems();
     setSelectedItems(items);
-  }, [open]);
+  }
+
+  React.useEffect(() => {
+    CStudioAuthoring.Events.contentSelected.subscribe(function (evtName, contentTO) {
+      handleContentMenuChanged();
+    });
+  }, []);
+
+  React.useEffect(() => {
+    CStudioAuthoring.Events.contentUnSelected.subscribe(function (evtName, contentTO) {
+      handleContentMenuChanged();
+    });
+  }, []);
 
   const handleClose = () => setOpen(false);
 
@@ -86,7 +101,14 @@ export default function App() {
 
   return (
     <div>
-      <Button color="primary" variant="contained" fullWidth onClick={() => setOpen(true)}>Translate</Button>
+      {selectedItems.length > 0 && (
+        <Box sx={{ '& > :not(style)': { m: 1 }, position: 'absolute', top: 0, right: 0 }}>
+          <Fab variant="extended" onClick={() => setOpen(true)}>
+            <TranslateIcon sx={{ mr: 1 }} />
+              Translate
+          </Fab>
+        </Box>
+      )}
       <Dialog
         open={open}
         fullWidth
