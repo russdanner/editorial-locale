@@ -52,14 +52,14 @@
             <module><moduleName>wcm_content</moduleName><value>wcm_content</value></module>
             <module>
               <!-- 
-              e.g. {sandbox}/config/studio/plugins/context-nav/translate/main.js
+              e.g. {sandbox}/config/studio/plugins/context-nav/translate/index.js
                                                    ^^^^^^^^^^^ ^^^^^^^^^ ^^^^^^^
                                                       type       name     file
               -->
               <plugin>
                 <type>context-nav</type>
                 <name>translate</name>
-                <file>main.js</file>
+                <file>index.js</file>
               </plugin>
               <!--<params>-->
               <!--  <param1>hello</param1>-->
