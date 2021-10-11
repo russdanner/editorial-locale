@@ -2,12 +2,10 @@
   "private": true,
   "name": "@craftercms/translate-plugin",
   "version": "1.0.0",
-  "main": "build/modern.cjs.js",
-  "module": "build/modern.esm.js",
-  "browser": "build/modern.umd.js",
+  "main": "build/index.js",
   "craftercms": {
-    "id": "org.craftercms.plugin.modernSetupSample",
-    "type": "modern-setup"
+    "id": "org.craftercms.plugin.translatePlugin",
+    "type": "react app"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",

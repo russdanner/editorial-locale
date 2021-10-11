@@ -19,30 +19,66 @@ import { StyledTableCell, StyledTableRow } from './TableStyle';
 import StudioAPI from '../api/studio';
 import { copyDestSub } from '../service/subscribe';
 
-const ROOT_DIRECTORY = '/site';
+const DEFAULT_ROOT_PATH = '/site';
+const DEFAULT_WEBSITE_PATH = '/site/website';
+const DEFAULT_COMPONENT_PATH = '/site/components';
 
-export default function FileSystemNavigator() {
+export default function FileSystemNavigator({ selectedItems }) {
   const [nodes, setNodes] = React.useState([]);
   const [expanded, setExpanded] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
+
+  const getRootDir = () => {
+    // If more than 1 items (or no item selected) selected, use /site as ROOT
+    if (selectedItems.length !== 1) {
+      return DEFAULT_ROOT_PATH;
+    }
+
+    const path = selectedItems[0].path;
+    if (path.startsWith(DEFAULT_WEBSITE_PATH)) {
+      return DEFAULT_WEBSITE_PATH;
+    }
+
+    if (path.startsWith(DEFAULT_COMPONENT_PATH)) {
+      return DEFAULT_COMPONENT_PATH;
+    }
+
+    return DEFAULT_ROOT_PATH;
+
+  };
 
   const handleToggle = (event, nodeIds) => {
     setExpanded(nodeIds);
   };
 
+  /**
+   * Find a node by its path from nodes object
+   * @param {*} path
+   * @param {*} data
+   * @returns found node
+   */
   const findNode = (path, data) => {
+    // Get list of paths from root to the node
+    // Ex, ['site', 'website', 'article'] => ['/site', '/site/website', '/site/website/article']
     const subPaths = path.split('/').filter(elm => !!elm);
     const fullPaths = [];
+    let nextPath = '';
+    const rootPath = getRootDir();
     for (let i = 0; i < subPaths.length; i += 1) {
-      if (fullPaths.length === 0) {
-        fullPaths.push(`/${subPaths[i]}`);
+      if (i === 0) {
+        nextPath = `/${subPaths[i]}`;
       } else {
-        fullPaths.push(`${fullPaths[fullPaths.length - 1]}/${subPaths[i]}`);
+        nextPath = `${nextPath}/${subPaths[i]}`;
+      }
+
+      if (nextPath.indexOf(rootPath) >= 0) {
+        fullPaths.push(nextPath);
       }
     }
 
     let foundNode = {};
-    while(fullPaths.length > 0) {
+    // go throush each path from root to the last child node
+    while (fullPaths.length > 0) {
       const currPath = fullPaths.shift();
       if (data.id === currPath) {
         foundNode = data;
@@ -61,13 +97,20 @@ export default function FileSystemNavigator() {
     fetchChildNodes(nodeId);
   };
 
+  /**
+   * Fetch child nodes if needed
+   * @param {*} nodeId
+   * @returns
+   */
   const fetchChildNodes = async (nodeId) => {
+    // First, find a node by its path
+    // If found and it has children, return since no need to fetch data anymore
     const foundNode = findNode(nodeId, nodes);
     if (foundNode.children.length > 0) {
       return;
     }
 
-    // update node
+    // Get children of node from API then append to nodes object
     const items = await StudioAPI.getChildrenPaths(nodeId);
     const childNodes = items.map(item => (
       {
@@ -77,12 +120,14 @@ export default function FileSystemNavigator() {
       }
     ));
     foundNode.children = childNodes;
+
+    // Re-render tree view
     setNodes(Object.assign({}, nodes));
   }
 
   React.useEffect(() => {
     (async function() {
-      const items = await StudioAPI.getChildrenPaths(ROOT_DIRECTORY);
+      const items = await StudioAPI.getChildrenPaths(getRootDir());
       const childNodes = items.map(item => (
         {
           id: item,
@@ -92,13 +137,18 @@ export default function FileSystemNavigator() {
       ));
 
       setNodes({
-        id: ROOT_DIRECTORY,
-        name: ROOT_DIRECTORY.split('/').pop(),
+        id: getRootDir(),
+        name: getRootDir().split('/').pop(),
         children: childNodes
       });
     })();
   }, []);
 
+  /**
+   * Recursively render tree view
+   * @param {*} nodes
+   * @returns
+   */
   const renderTree = (nodes) => {
     return (
       <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
@@ -133,7 +183,7 @@ export default function FileSystemNavigator() {
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
-          defaultExpanded={[ROOT_DIRECTORY]}
+          defaultExpanded={[getRootDir()]}
           expanded={expanded}
           selected={selected}
           onNodeToggle={handleToggle}

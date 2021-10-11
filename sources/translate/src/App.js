@@ -15,9 +15,6 @@
  */
 
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import TranslateIcon from '@mui/icons-material/Translate';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -27,6 +24,7 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import { styled } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
 import TreeView from './components/TreeView';
@@ -38,7 +36,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function NoSelectedItems() {
+const NoSelectedItems = () => {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert variant="outlined" severity="error">
@@ -47,7 +45,28 @@ function NoSelectedItems() {
       </Alert>
     </Stack>
   );
-}
+};
+
+const StyledPopupButton = styled('a')(({ theme }) => ({
+  cursor: 'pointer',
+  paddingLeft: 0,
+  paddingRight: '10px',
+  paddingTop: '16.5px',
+  paddingBottom: '16.5px',
+  color: '#777',
+  lineHeight: '17px',
+  position: 'relative',
+  display: 'block',
+  textDecoration: 'none',
+  '&:hover': {
+    color: '#333',
+    textDecoration: 'none',
+  }
+}));
+
+const StyledActionButton = styled(Button)(({ theme }) => ({
+  minWidth: '120px',
+}));
 
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -55,32 +74,10 @@ export default function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [desPath, setDesPath] = useState('');
 
-  React.useEffect(() => {
-    copyDestSub.subscribe((path) => {
-      setDesPath(path);
-    });
-
-    return () => {
-      copyDestSub.unsubscribe();
-    }
-  }, []);
-
   const handleContentMenuChanged = () => {
     const items = StudioAPI.getSelectedItems();
     setSelectedItems(items);
   }
-
-  React.useEffect(() => {
-    CStudioAuthoring.Events.contentSelected.subscribe(function (evtName, contentTO) {
-      handleContentMenuChanged();
-    });
-  }, []);
-
-  React.useEffect(() => {
-    CStudioAuthoring.Events.contentUnSelected.subscribe(function (evtName, contentTO) {
-      handleContentMenuChanged();
-    });
-  }, []);
 
   const handleClose = () => setOpen(false);
 
@@ -99,15 +96,35 @@ export default function App() {
     }
   }
 
+  React.useEffect(() => {
+    CStudioAuthoring.Events.contentSelected.subscribe(handleContentMenuChanged, { subscriber: 'translate-plugin' });
+    CStudioAuthoring.Events.contentUnSelected.subscribe(handleContentMenuChanged, { subscriber: 'translate-plugin' });
+
+    return () => {
+      CStudioAuthoring.Events.contentSelected.unsubscribe(handleContentMenuChanged);
+      CStudioAuthoring.Events.contentUnSelected.unsubscribe(handleContentMenuChanged);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    copyDestSub.subscribe((path) => {
+      setDesPath(path);
+    });
+
+    return () => {
+      copyDestSub.unsubscribe();
+    }
+  }, []);
+
   return (
     <div>
       {selectedItems.length > 0 && (
-        <Box sx={{ '& > :not(style)': { m: 1 }, position: 'absolute', top: 0, right: 0 }}>
-          <Fab variant="extended" onClick={() => setOpen(true)}>
-            <TranslateIcon sx={{ mr: 1 }} />
-              Translate
-          </Fab>
-        </Box>
+        <li className="acn-link" onClick={() => setOpen(true)}>
+          <StyledPopupButton className="ItemTranslate cursor">
+            Translate
+          </StyledPopupButton>
+          <img id="itemtranslate-loading" src="/studio/static-assets/themes/cstudioTheme/images/treeview-loading.gif" />
+        </li>
       )}
       <Dialog
         open={open}
@@ -124,20 +141,20 @@ export default function App() {
             (
               <>
                 <SelectedItems selectedItems={selectedItems} />
-                <TreeView />
+                <TreeView selectedItems={selectedItems} />
               </>
             )
           }
         </DialogContent>
         <DialogActions>
-          <Button sx={{ minWidth: '100px'}} variant="contained" onClick={handleCopy} color="primary">Translate</Button>
-          <Button sx={{ minWidth: '100px'}} variant="outlined" onClick={handleClose} color="primary">Cancel</Button>
+          <StyledActionButton variant="contained" onClick={handleCopy} color="primary">Translate</StyledActionButton>
+          <StyledActionButton variant="outlined" onClick={handleClose} color="primary">Cancel</StyledActionButton>
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
         <Snackbar open={openNotification} autoHideDuration={6000} onClose={() => setOpenNotification(false)}>
           <Alert onClose={() => setOpenNotification(false)} severity="success" sx={{ width: '100%' }}>
-            Selected files are copied to destination folder.
+            Selected files are translated to destination folder.
           </Alert>
         </Snackbar>
       </Stack>

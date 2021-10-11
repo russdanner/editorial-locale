@@ -26,6 +26,7 @@ CStudioAuthoring.Module.moduleLoaded('translate', {
           const elm = document.createElement('ul');
           elm.setAttribute('id', 'translate-popup');
           elm.setAttribute('class', 'nav navbar-nav');
+          elm.setAttribute('style', 'margin-left: "12px";');
 
           const activeActNode = document.getElementById('activeContentActions');
           activeActNode.parentNode.insertBefore(elm, activeActNode.nextElementSibling);
