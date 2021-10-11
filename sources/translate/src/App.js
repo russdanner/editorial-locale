@@ -70,7 +70,7 @@ const StyledActionButton = styled(Button)(({ theme }) => ({
 
 export default function App() {
   const [open, setOpen] = useState(false);
-  const [openNotification, setOpenNotification] = useState(false);
+  const [alert, setAlert] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
   const [desPath, setDesPath] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -80,27 +80,54 @@ export default function App() {
     setSelectedItems(items);
   }
 
-  const handleClose = () => setOpen(false);
+  const handleClose = (event, reason) => {
+    if (reason !== 'backdropClick') {
+      setOpen(false);
+    }
+  };
+
+  const onCloseAlert = () => {
+    setAlert(Object.assign({}, {
+      open: false,
+      severity: alert.severity,
+      message: alert.message,
+     }));
+  }
 
   const handleCopy = async (event) => {
     event.preventDefault();
 
     setIsProcessing(true);
     const paths = StudioAPI.getSelectedItems().map(item => item.path);
+
     for (let i =0; i < paths.length; i += 1) {
       if (await StudioAPI.clipboardCopy(paths[i])) {
         const res = await StudioAPI.clipboardPaste(desPath);
         if (!res) {
-          console.log(`There is an error while traslating file: ${paths[i]}`);
+          setIsProcessing(false);
+          return setAlert({
+            open: true,
+            severity: 'error',
+            message: `There is an error while traslating file: ${paths[i]}`,
+          });
         }
       } else {
-        console.log(`There is an error while copying file: ${paths[i]}`);
+        setIsProcessing(false);
+        return setAlert({
+          open: true,
+          severity: 'error',
+          message: `There is an error while copying file: ${paths[i]}`,
+        });
       }
     }
 
+    setAlert({
+      open: true,
+      severity: 'success',
+      message: 'Selected files are translated to destination folder.',
+    });
     setIsProcessing(false);
     setOpen(false);
-    setOpenNotification(true);
   }
 
   React.useEffect(() => {
@@ -137,9 +164,9 @@ export default function App() {
         open={open}
         fullWidth
         maxWidth="lg"
-        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        onClose={handleClose}
       >
         <DialogTitle id="alert-dialog-title">Translate</DialogTitle>
         <DialogContent>
@@ -173,9 +200,9 @@ export default function App() {
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Snackbar open={openNotification} autoHideDuration={6000} onClose={() => setOpenNotification(false)}>
-          <Alert onClose={() => setOpenNotification(false)} severity="success" sx={{ width: '100%' }}>
-            Selected files are translated to destination folder.
+        <Snackbar open={alert && alert.open} autoHideDuration={6000} onClose={onCloseAlert}>
+          <Alert onClose={onCloseAlert} severity={alert.severity} sx={{ width: '100%' }}>
+            {alert.message}
           </Alert>
         </Snackbar>
       </Stack>
