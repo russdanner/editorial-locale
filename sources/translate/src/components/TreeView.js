@@ -25,18 +25,19 @@ export default function FileSystemNavigator({ selectedItems }) {
   const [expanded, setExpanded] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
 
+  /**
+   * Get root directory
+   * If all /site/website => root directory
+   * If all /site/components => root directory
+   * Default: /site
+   * @returns root directory
+   */
   const getRootDir = () => {
-    // If more than 1 items (or no item selected) selected, use /site as ROOT
-    if (selectedItems.length !== 1) {
-      return DEFAULT_ROOT_PATH;
-    }
-
-    const path = selectedItems[0].path;
-    if (path.startsWith(DEFAULT_WEBSITE_PATH)) {
+    if (selectedItems.every((elm) => elm.path && elm.path.startsWith(DEFAULT_WEBSITE_PATH))) {
       return DEFAULT_WEBSITE_PATH;
     }
 
-    if (path.startsWith(DEFAULT_COMPONENT_PATH)) {
+    if (selectedItems.every((elm) => elm.path && elm.path.startsWith(DEFAULT_COMPONENT_PATH))) {
       return DEFAULT_COMPONENT_PATH;
     }
 
