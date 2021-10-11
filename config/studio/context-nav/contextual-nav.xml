@@ -61,9 +61,13 @@
                 <name>translate</name>
                 <file>index.js</file>
               </plugin>
-              <!--<params>-->
-              <!--  <param1>hello</param1>-->
-              <!--</params>-->
+              <params>
+					<!--
+						Any config params you specify here, will
+						be passed to the "initialize" function of your plugin.
+					-->
+					<widget>popup</widget>
+				</params>
             </module>
             <module><moduleName>admin_console</moduleName><value>admin_console</value></module>
 
