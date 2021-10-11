@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@craftercms/translate-item-plugin",
+  "name": "@craftercms/translate-plugin",
   "version": "1.0.0",
   "main": "build/modern.cjs.js",
   "module": "build/modern.esm.js",

@@ -18,15 +18,18 @@ import App from './App';
 import { render } from 'react-dom';
 import { createElement } from 'react';
 
-CStudioAuthoring.Module.moduleLoaded('translate-item', {
+CStudioAuthoring.Module.moduleLoaded('translate', {
   initialize(config) {
     if (config && config.params) {
       switch (config.params.widget) {
         case 'popup':
-          render(
-            createElement(App),
-            config.containerEl
-          );
+          const elm = document.createElement('ul');
+          elm.setAttribute('id', 'translate-popup');
+          elm.setAttribute('class', 'nav navbar-nav');
+
+          const activeActNode = document.getElementById('activeContentActions');
+          activeActNode.parentNode.insertBefore(elm, activeActNode.nextElementSibling);
+          render(createElement(App), elm);
           break;
         default:
           console.error('No widget supplied on the config. Skipping initialize request.');
