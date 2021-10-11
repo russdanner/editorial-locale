@@ -14,9 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-
 import CookieHelper from '../helpers/cookie';
 
 const API_GET_ITEM_TREE = '/studio/api/1/services/api/1/content/get-items-tree.json';
