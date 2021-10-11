@@ -20,8 +20,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import commit from 'rollup-plugin-commit';
 import copy from 'rollup-plugin-copy';
-
-// TODO: Should add terser for compress output for production build
+import {terser} from 'rollup-plugin-terser';
 
 const plugins = [
   replace({ 'process.env.NODE_ENV': '"production"' }),
@@ -49,8 +48,11 @@ const plugins = [
       'react/jsx-dev-runtime': ['jsx', 'jsxs', 'jsxDEV']
     }
   }),
-  // If using the watch, you could also use these two in conjunction
-  // to build, copy and commit so you can refresh browser and see changes.
+  terser({
+    ecma: 2020,
+    module: true,
+    warnings: true,
+  }),
   copy({
     targets: [{ src: 'build/*', dest: '../../config/studio/plugins/context-nav/translate' }],
     hook: 'writeBundle'
@@ -86,7 +88,7 @@ export default [
     external,
     output: {
       sourcemap: 'inline',
-      name: 'studioPluginCopyItem',
+      name: 'studioPluginTranslateItem',
       file: 'build/index.js',
       format: 'iife',
       globals
