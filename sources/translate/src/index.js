@@ -20,6 +20,11 @@ import App from './App';
 import { render } from 'react-dom';
 import { createElement } from 'react';
 
+/**
+ * A plugin to translate selected items by copying them to an other locale location
+ * This plugin add a button next to active content actions bar of Crafter 3.1.x
+ * This is possible by adding an `ul` element and append next to 'activeContentActions'
+ */
 CStudioAuthoring.Module.moduleLoaded('translate', {
   initialize(config) {
     if (config && config.params) {
