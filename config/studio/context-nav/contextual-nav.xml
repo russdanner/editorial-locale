@@ -50,6 +50,21 @@
             <module><moduleName>wcm_dropdown</moduleName><value>wcm_dropdown</value></module>
             <module><moduleName>quick-create</moduleName><value>quick-create</value></module>
             <module><moduleName>wcm_content</moduleName><value>wcm_content</value></module>
+            <module>
+              <!-- 
+              e.g. {sandbox}/config/studio/plugins/context-nav/translate/main.js
+                                                   ^^^^^^^^^^^ ^^^^^^^^^ ^^^^^^^
+                                                      type       name     file
+              -->
+              <plugin>
+                <type>context-nav</type>
+                <name>translate</name>
+                <file>main.js</file>
+              </plugin>
+              <!--<params>-->
+              <!--  <param1>hello</param1>-->
+              <!--</params>-->
+            </module>
             <module><moduleName>admin_console</moduleName><value>admin_console</value></module>
 
             <module><moduleName>preview_tools</moduleName><value>preview_tools</value></module>
