@@ -8,20 +8,6 @@
 					<menuItems>
 						<menuItem>
 							<modulehooks>
-							    <modulehook>
-									<plugin>
-										<type>sidebar</type>
-										<name>translate-item</name>
-										<file>index.js</file>
-									</plugin>
-									<params>
-										<!--
-											Any config params you specify here, will
-											be passed to the "initialize" function of your plugin.
-										-->
-										<widget>popup</widget>
-									</params>
-								</modulehook>
 								<!-- Dashboard -->
 								<modulehook>
 									<name>dashboard</name>
