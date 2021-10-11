@@ -73,6 +73,7 @@ export default function App() {
   const [openNotification, setOpenNotification] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [desPath, setDesPath] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleContentMenuChanged = () => {
     const items = StudioAPI.getSelectedItems();
@@ -84,16 +85,22 @@ export default function App() {
   const handleCopy = async (event) => {
     event.preventDefault();
 
+    setIsProcessing(true);
     const paths = StudioAPI.getSelectedItems().map(item => item.path);
     for (let i =0; i < paths.length; i += 1) {
       if (await StudioAPI.clipboardCopy(paths[i])) {
         const res = await StudioAPI.clipboardPaste(desPath);
-        if (res) {
-          setOpen(false);
-          setOpenNotification(true);
+        if (!res) {
+          console.log(`There is an error while traslating file: ${paths[i]}`);
         }
+      } else {
+        console.log(`There is an error while copying file: ${paths[i]}`);
       }
     }
+
+    setIsProcessing(false);
+    setOpen(false);
+    setOpenNotification(true);
   }
 
   React.useEffect(() => {
@@ -147,8 +154,22 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <StyledActionButton variant="contained" onClick={handleCopy} color="primary">Translate</StyledActionButton>
-          <StyledActionButton variant="outlined" onClick={handleClose} color="primary">Cancel</StyledActionButton>
+          <StyledActionButton
+            variant="contained"
+            color="primary"
+            onClick={handleCopy}
+            disabled={isProcessing}
+          >
+            Translate
+          </StyledActionButton>
+          <StyledActionButton
+            variant="outlined"
+            color="primary"
+            onClick={handleClose}
+            disabled={isProcessing}
+          >
+            Cancel
+          </StyledActionButton>
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
