@@ -32,6 +32,29 @@ import TreeView from './components/TreeView';
 import { copyDestSub } from './service/subscribe';
 import StudioAPI from './api/studio';
 
+const DEFAULT_WEBSITE_PATH = '/site/website';
+const DEFAULT_COMPONENT_PATH = '/site/components';
+
+/**
+ * Get root directory
+ * If all /site/website => root directory
+ * If all /site/components => root directory
+ * Default: /site
+ * @returns root directory
+ */
+  const getRootDir = (items) => {
+  if (items.every((elm) => elm.path && elm.path.startsWith(DEFAULT_WEBSITE_PATH))) {
+    return DEFAULT_WEBSITE_PATH;
+  }
+
+  if (items.every((elm) => elm.path && elm.path.startsWith(DEFAULT_COMPONENT_PATH))) {
+    return DEFAULT_COMPONENT_PATH;
+  }
+
+  return null;
+
+};
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -46,6 +69,17 @@ const NoSelectedItems = () => {
     </Stack>
   );
 };
+
+const MixedSelectedItems = () => {
+  return (
+    <Stack sx={{ width: '100%' }} spacing={2}>
+      <Alert variant="outlined" severity="error">
+        <AlertTitle>Error</AlertTitle>
+        Mixed content types are selected. All items must be in the same category (Pages or Components).
+      </Alert>
+    </Stack>
+  );
+}
 
 const StyledPopupButton = styled('a')(({ theme }) => ({
   cursor: 'pointer',
@@ -72,13 +106,9 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({});
   const [selectedItems, setSelectedItems] = useState([]);
+  const [rootDir, setRootDir] = useState(null);
   const [desPath, setDesPath] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleContentMenuChanged = () => {
-    const items = StudioAPI.getSelectedItems();
-    setSelectedItems(items);
-  }
 
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick') {
@@ -131,6 +161,12 @@ export default function App() {
   }
 
   React.useEffect(() => {
+    const handleContentMenuChanged = () => {
+      const items = StudioAPI.getSelectedItems();
+      setSelectedItems(items);
+      setRootDir(getRootDir(items));
+    }
+
     CStudioAuthoring.Events.contentSelected.subscribe(handleContentMenuChanged, { subscriber: 'translate-plugin' });
     CStudioAuthoring.Events.contentUnSelected.subscribe(handleContentMenuChanged, { subscriber: 'translate-plugin' });
 
@@ -175,7 +211,11 @@ export default function App() {
             (
               <>
                 <SelectedItems selectedItems={selectedItems} />
-                <TreeView selectedItems={selectedItems} />
+                { !!rootDir ? (
+                  <TreeView selectedItems={selectedItems} rootDir={rootDir} />
+                ) : (
+                  <MixedSelectedItems />
+                )}
               </>
             )
           }
@@ -185,7 +225,7 @@ export default function App() {
             variant="contained"
             color="primary"
             onClick={handleCopy}
-            disabled={isProcessing}
+            disabled={isProcessing || !rootDir}
           >
             Translate
           </StyledActionButton>

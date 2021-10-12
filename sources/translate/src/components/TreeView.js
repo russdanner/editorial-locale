@@ -16,34 +16,10 @@ import { StyledTableCell, StyledTableRow } from './TableStyle';
 import StudioAPI from '../api/studio';
 import { copyDestSub } from '../service/subscribe';
 
-const DEFAULT_ROOT_PATH = '/site';
-const DEFAULT_WEBSITE_PATH = '/site/website';
-const DEFAULT_COMPONENT_PATH = '/site/components';
-
-export default function FileSystemNavigator({ selectedItems }) {
+export default function FileSystemNavigator({ selectedItems, rootDir }) {
   const [nodes, setNodes] = React.useState([]);
   const [expanded, setExpanded] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
-
-  /**
-   * Get root directory
-   * If all /site/website => root directory
-   * If all /site/components => root directory
-   * Default: /site
-   * @returns root directory
-   */
-  const getRootDir = () => {
-    if (selectedItems.every((elm) => elm.path && elm.path.startsWith(DEFAULT_WEBSITE_PATH))) {
-      return DEFAULT_WEBSITE_PATH;
-    }
-
-    if (selectedItems.every((elm) => elm.path && elm.path.startsWith(DEFAULT_COMPONENT_PATH))) {
-      return DEFAULT_COMPONENT_PATH;
-    }
-
-    return DEFAULT_ROOT_PATH;
-
-  };
 
   const handleToggle = (event, nodeIds) => {
     setExpanded(nodeIds);
@@ -61,7 +37,7 @@ export default function FileSystemNavigator({ selectedItems }) {
     const subPaths = path.split('/').filter(elm => !!elm);
     const fullPaths = [];
     let nextPath = '';
-    const rootPath = getRootDir();
+    const rootPath = rootDir;
     for (let i = 0; i < subPaths.length; i += 1) {
       if (i === 0) {
         nextPath = `/${subPaths[i]}`;
@@ -125,7 +101,7 @@ export default function FileSystemNavigator({ selectedItems }) {
 
   React.useEffect(() => {
     (async function() {
-      const items = await StudioAPI.getChildrenPaths(getRootDir());
+      const items = await StudioAPI.getChildrenPaths(rootDir);
       const childNodes = items.map(item => (
         {
           id: item,
@@ -135,8 +111,8 @@ export default function FileSystemNavigator({ selectedItems }) {
       ));
 
       setNodes({
-        id: getRootDir(),
-        name: getRootDir().split('/').pop(),
+        id: rootDir,
+        name: rootDir.split('/').pop(),
         children: childNodes
       });
     })();
@@ -181,7 +157,7 @@ export default function FileSystemNavigator({ selectedItems }) {
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
-          defaultExpanded={[getRootDir()]}
+          defaultExpanded={[rootDir]}
           expanded={expanded}
           selected={selected}
           onNodeToggle={handleToggle}
