@@ -40,27 +40,50 @@
     Please note that valid types are limited to: dropdown, checkboxes, input.
 -->
 <targeting>
+    
+  <property>
+    <name>previewDate</name>
+    <label>Vorschauzeitpunkt</label>
+    <description>Datum und Uhrzeit an dem die Seite angeschaut wird.</description>
+    <type>datetime</type>
+    <default_value></default_value>
+    <hint></hint>
+  </property>
+  <property>
+    <name>artikel</name>
+    <label>Artikel</label>
+    <description>Zum Testen der Banner auf der Artikeldetailseite</description>
+    <type>input</type>
+    <default_value></default_value>
+    <hint>Hier kann eine Artikelnummer in beliebigem Format eingegeben werden</hint>
+  </property>
+  <property>
+    <name>abtestVariant</name>
+    <label>A/B-Test</label>
+    <description>Wenn ein fester Wert gesetzt ist, wird immer genau diese Variante angezeigt</description>
+    <type>dropdown</type>
+    <possible_values>
+      <value></value>
+      <value>A</value>
+      <value>B</value>
+    </possible_values>
+    <default_value>A</default_value>
+  </property>
+  <property>
+    <name>katToolId</name>
+    <label>KatToolId</label>
+    <description>Zum Testen der linken Navigation</description>
+    <type>input</type>
+    <default_value>2</default_value>
+    <hint>Hier kann eine Id aus dem Kategorietool eingegeben werden, z.B. 2 für Bücher</hint>
+  </property>
+  <property>
+    <name>kundencluster</name>
+    <label>Kundencluster</label>
+    <description>Zum Testen der Anzeige bei verschiedenen Kundenclustern</description>
+    <type>input</type>
+    <default_value></default_value>
+    <hint>Die möglichen Ausprägungen für die Produktion sind hier nachzulesen (Feld "id"): http://clusterm1.prod.ecom.thalia.de:8080/api/rest/clusterdefinition/v1/regeln</hint>
+  </property>
 
-    <property>
-        <name>segment</name>
-        <label>Segment</label>
-        <description>User segment.</description>
-        <type>dropdown</type> <!-- valid types: dropdown, checkboxes, input -->
-        <possible_values>
-            <value>guy</value>
-            <value>gal</value>
-            <value>anonymous</value>
-        </possible_values>
-        <default_value>anonymous</default_value>
-        <hint>Setting the segment will change content targeting to the audience selected.</hint>
-   </property>
-
-    <property>
-        <name>name</name>
-        <label>Name</label>
-        <description>User's first and last name.</description>
-        <type>input</type> <!-- valid types: dropdown, checkboxes, input -->
-        <default_value></default_value>
-        <hint>Enter user's first and last name.</hint>
-   </property>
 </targeting>
