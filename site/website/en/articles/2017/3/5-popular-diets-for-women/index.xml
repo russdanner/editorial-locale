@@ -30,10 +30,9 @@
 	<image_s>/static-assets/images/coffee-pic.jpg</image_s>
 	<createdDate>2017-3-14T23:41:13.000Z</createdDate>
 	<createdDate_dt>2017-3-14T23:41:13.000Z</createdDate_dt>
-	<lastModifiedDate>2021-01-29T01:43:50.372Z</lastModifiedDate>
-	<lastModifiedDate_dt>2021-01-29T01:43:50.372Z</lastModifiedDate_dt>
+	<lastModifiedDate>2021-10-08T09:30:52.025Z</lastModifiedDate>
+	<lastModifiedDate_dt>2021-10-08T09:30:52.025Z</lastModifiedDate_dt>
 	<date_dt>2017-03-14T04:00:00.000Z</date_dt>
-	<localeCode/>
 	<disabled>false</disabled>
 	<header_o item-list="true">	<item datasource="components-header">	<key>/site/components/en/headers/header.xml</key>
 	<value>Header</value>
@@ -46,4 +45,6 @@
 	<disableFlattening>false</disableFlattening>
 	</item></left-rail_o>
 	<date_dt_tz>EST5EDT</date_dt_tz>
+	<localeSourceId_s>0e776c44-0b9e-5890-981f-7c41001a698a</localeSourceId_s>
+	<localeCode_s>en</localeCode_s>
 </page>

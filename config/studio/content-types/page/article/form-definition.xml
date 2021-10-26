@@ -26,7 +26,7 @@
 		</property>
 	</properties>
 	<sections>		<section>
-			<title> Locale Control </title>
+			<title>Locale</title>
 			<description></description>
 			<defaultOpen>true</defaultOpen>
 			<fields>
@@ -41,12 +41,12 @@
 					<properties>
 						<property>
 							<name>size</name>
-							<value>0</value>
+							<value>50</value>
 							<type>int</type>
 						</property>
 						<property>
 							<name>maxlength</name>
-							<value>0</value>
+							<value>50</value>
 							<type>int</type>
 						</property>
 						<property>
@@ -82,7 +82,7 @@
 					<type>custom-locale</type>
 					<id>localeSourceId_s</id>
 					<iceId></iceId>
-					<title>Locale Control Plugin</title>
+					<title>Locale Source ID</title>
 					<description></description>
 					<defaultValue></defaultValue>
 					<help></help>
@@ -776,12 +776,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{locale}/headers/</value>
+							<value>/site/components/{parentPath[0]}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{locale}/headers/</value>
+							<value>/site/components/{parentPath[0]}/headers/</value>
 								<type>undefined</type>
 						</property>
 						<property>
@@ -876,12 +876,12 @@
 					<properties>
 						<property>
 							<name>repoPath</name>
-							<value>/site/components/{locale}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
 							<name>browsePath</name>
-							<value>/site/components/{locale}/left-rails/</value>
+							<value>/site/components/{parentPath[0]}/left-rails/</value>
 								<type>undefined</type>
 						</property>
 						<property>
