@@ -43,6 +43,18 @@ const StudioAPI = {
       contentType: item.contentType,
     }));
   },
+  openEditForm: function(contentType, path) {
+    return CStudioAuthoring.Operations.editContent(
+      contentType,
+      CStudioAuthoringContext.site,
+      path,
+      '',
+      path,
+      false,
+      null,
+      new Array()
+    );
+  },
   async getChildrenPaths(path) {
     const res = await fetch(`${StudioAPI.origin()}${API_GET_ITEM_TREE}?site=${StudioAPI.siteId()}&path=${path}&depth=1`, {
       method: 'GET',

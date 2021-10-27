@@ -145,16 +145,7 @@ export default function App() {
         } else {
           // Open edit form if there is only 1 item
           if (paths.length === 1) {
-            CStudioAuthoring.Operations.editContent(
-              selectedItems[0].contentType,
-              CStudioAuthoringContext.site,
-              pastePath,
-              '',
-              pastePath,
-              false,
-              null,
-              new Array()
-            );
+            StudioAPI.openEditForm(selectedItems[0].contentType, pastePath);
           }
         }
       } else {
