@@ -48,13 +48,11 @@ export default function RenameFolderDialog({ open, onClose, path }) {
   const onSubmit = async () => {
     if (folderName && path) {
       const res = await StudioAPI.renameFolder(path, folderName);
-      setFolderName('');
       onClose(res);
     }
   };
 
   const closeWithoutSubmit = () => {
-    setFolderName('');
     onClose();
   };
 
