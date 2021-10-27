@@ -40,6 +40,7 @@ const StudioAPI = {
     return CStudioAuthoring.SelectedContent.getSelectedContent().map(item => ({
       name: item.internalName,
       path: item.uri,
+      contentType: item.contentType,
     }));
   },
   async getChildrenPaths(path) {
@@ -106,10 +107,12 @@ const StudioAPI = {
     });
 
     if (res.status === 200) {
-      return true;
+      const data = await res.json();
+      const filePath = data.status[0];
+      return filePath;
     }
 
-    return false;
+    return null;
   },
 };
 

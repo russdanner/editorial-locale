@@ -99,6 +99,7 @@ const StyledPopupButton = styled('a')(({ theme }) => ({
 }));
 
 const StyledActionButton = styled(Button)(({ theme }) => ({
+  textTransform: 'capitalize',
   minWidth: '120px',
 }));
 
@@ -128,18 +129,33 @@ export default function App() {
     event.preventDefault();
 
     setIsProcessing(true);
-    const paths = StudioAPI.getSelectedItems().map(item => item.path);
+    const selectedItems = StudioAPI.getSelectedItems();
+    const paths = selectedItems.map(item => item.path);
 
     for (let i =0; i < paths.length; i += 1) {
       if (await StudioAPI.clipboardCopy(paths[i])) {
-        const res = await StudioAPI.clipboardPaste(desPath);
-        if (!res) {
+        const pastePath = await StudioAPI.clipboardPaste(desPath);
+        if (!pastePath) {
           setIsProcessing(false);
-          return setAlert({
+          setAlert({
             open: true,
             severity: 'error',
             message: `There is an error while traslating file: ${paths[i]}`,
           });
+        } else {
+          // Open edit form if there is only 1 item
+          if (paths.length === 1) {
+            CStudioAuthoring.Operations.editContent(
+              selectedItems[0].contentType,
+              CStudioAuthoringContext.site,
+              pastePath,
+              '',
+              pastePath,
+              false,
+              null,
+              new Array()
+            );
+          }
         }
       } else {
         setIsProcessing(false);
