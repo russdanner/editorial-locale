@@ -23,7 +23,7 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import { styled } from '@mui/material/styles';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
 import TreeView from './components/TreeView';
@@ -34,6 +34,23 @@ import StudioAPI from './api/studio';
 
 const DEFAULT_WEBSITE_PATH = '/site/website';
 const DEFAULT_COMPONENT_PATH = '/site/components';
+
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      light: '#7e9dbb',
+      main: '#6d90b2',
+      dark: '#52779b',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 /**
  * Get root directory
@@ -191,7 +208,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <ThemeProvider theme={customTheme}>
       {selectedItems.length > 0 && (
         <li className="acn-link" onClick={() => setOpen(true)}>
           <StyledPopupButton className="ItemTranslate cursor">
@@ -250,6 +267,6 @@ export default function App() {
           </Alert>
         </Snackbar>
       </Stack>
-    </div>
+    </ThemeProvider>
   );
 }
