@@ -48,8 +48,14 @@ export default function RenameFolderDialog({ open, onClose, path }) {
   const onSubmit = async () => {
     if (folderName && path) {
       const res = await StudioAPI.renameFolder(path, folderName);
-      onClose();
+      setFolderName('');
+      onClose(res);
     }
+  };
+
+  const closeWithoutSubmit = () => {
+    setFolderName('');
+    onClose();
   };
 
   return (
@@ -57,7 +63,7 @@ export default function RenameFolderDialog({ open, onClose, path }) {
       <StyledDialog
         maxWidth="md"
         open={open}
-        onClose={onClose}
+        onClose={closeWithoutSubmit}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
@@ -83,7 +89,7 @@ export default function RenameFolderDialog({ open, onClose, path }) {
           <StyledButton
             variant="outlined"
             color="primary"
-            onClick={onClose}
+            onClick={closeWithoutSubmit}
           >
             Cancel
           </StyledButton>

@@ -83,11 +83,11 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
    * @param {*} nodeId
    * @returns
    */
-  const fetchChildNodes = async (nodeId) => {
+  const fetchChildNodes = async (nodeId, forceUpdate) => {
     // First, find a node by its path
     // If found and it has children, return since no need to fetch data anymore
     const foundNode = findNode(nodeId, nodes);
-    if (foundNode.children.length > 0) {
+    if (!forceUpdate && foundNode.children.length > 0) {
       return;
     }
 
@@ -151,6 +151,21 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
     });
   };
 
+  const onCreateFolderClose = (isSuccess) => {
+    if (isSuccess) {
+      fetchChildNodes(rightClickPosition.path, true);
+    }
+    setNewFolderDialogOpen(false);
+  };
+
+  const onRenameFolderClose = (isSuccess) => {
+    if (isSuccess) {
+      const parentNodeId = rightClickPosition.path.split('/').slice(0, -1).join('/');
+      fetchChildNodes(parentNodeId, true);
+    }
+    setRenameFolderDialogOpen(false);
+  };
+
   return (
     <>
       <Grid container sx={{ padding: '15px' }}>
@@ -200,12 +215,12 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
       />
       <NewFolderDialog
         open={newFolderDialogOpen}
-        onClose={() => setNewFolderDialogOpen(false)}
+        onClose={onCreateFolderClose}
         path={rightClickPosition.path}
       />
       <RenameFolderDialog
         open={renameFolderDialogOpen}
-        onClose={() => setRenameFolderDialogOpen(false)}
+        onClose={onRenameFolderClose}
         path={rightClickPosition.path}
       />
     </>
