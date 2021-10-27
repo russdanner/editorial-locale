@@ -38,7 +38,7 @@
 	<header_o item-list="true"/>
 	<left-rail_o item-list="true"/>
 	<disabled>false</disabled>
-	<localeCode_s>en</localeCode_s>
+	<localeCode_s>fr</localeCode_s>
 	<localeSourceId_s>452ac13f-6807-2bff-8acd-a77738f33172</localeSourceId_s>
 	<date_dt_tz>EST5EDT</date_dt_tz>
 </page>
