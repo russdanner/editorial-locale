@@ -61,7 +61,7 @@ export default function NewFolderDialog({ open, onClose, path }) {
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle>Create a New Folder</DialogTitle>
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Create a New Folder</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Parent path: {path}<br />
@@ -80,13 +80,6 @@ export default function NewFolderDialog({ open, onClose, path }) {
           />
         </DialogContent>
         <DialogActions>
-          <StyledCancelButton
-            variant="outlined"
-            color="primary"
-            onClick={closeWithoutSubmit}
-          >
-            Cancel
-          </StyledCancelButton>
           <StyledMainButton
             variant="contained"
             color="primary"
@@ -94,6 +87,13 @@ export default function NewFolderDialog({ open, onClose, path }) {
           >
             Create
           </StyledMainButton>
+          <StyledCancelButton
+            variant="outlined"
+            color="primary"
+            onClick={closeWithoutSubmit}
+          >
+            Cancel
+          </StyledCancelButton>
         </DialogActions>
       </StyledDialog>
     </div>

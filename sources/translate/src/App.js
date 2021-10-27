@@ -242,6 +242,14 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
+          <StyledMainButton
+              variant="contained"
+              color="primary"
+              onClick={handleCopy}
+              disabled={isProcessing || !rootDir}
+            >
+              Translate
+            </StyledMainButton>
           <StyledCancelButton
               variant="outlined"
               color="primary"
@@ -250,14 +258,6 @@ export default function App() {
             >
               Cancel
             </StyledCancelButton>
-          <StyledMainButton
-            variant="contained"
-            color="primary"
-            onClick={handleCopy}
-            disabled={isProcessing || !rootDir}
-          >
-            Translate
-          </StyledMainButton>
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>

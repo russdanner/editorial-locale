@@ -65,7 +65,7 @@ export default function RenameFolderDialog({ open, onClose, path }) {
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle>Rename Folder</DialogTitle>
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Rename Folder</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Current path: {path}<br />
@@ -84,13 +84,6 @@ export default function RenameFolderDialog({ open, onClose, path }) {
           />
         </DialogContent>
         <DialogActions>
-          <StyledCancelButton
-            variant="outlined"
-            color="primary"
-            onClick={closeWithoutSubmit}
-          >
-            Cancel
-          </StyledCancelButton>
           <StyledMainButton
             variant="contained"
             color="primary"
@@ -98,6 +91,13 @@ export default function RenameFolderDialog({ open, onClose, path }) {
           >
             Rename
           </StyledMainButton>
+          <StyledCancelButton
+            variant="outlined"
+            color="primary"
+            onClick={closeWithoutSubmit}
+          >
+            Cancel
+          </StyledCancelButton>
         </DialogActions>
       </StyledDialog>
     </div>
