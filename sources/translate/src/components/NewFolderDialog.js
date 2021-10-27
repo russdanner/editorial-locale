@@ -48,7 +48,12 @@ export default function NewFolderDialog({ open, onClose, path }) {
         onClose={closeWithoutSubmit}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Create a New Folder</DialogTitle>
+        <DialogTitle
+          style={{ cursor: 'move' }}
+          id="draggable-dialog-title"
+        >
+          Create a New Folder
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
             Parent path: {path}<br />

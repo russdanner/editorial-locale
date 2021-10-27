@@ -15,7 +15,6 @@
  */
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -53,7 +52,12 @@ export default function RenameFolderDialog({ open, onClose, path }) {
         onClose={closeWithoutSubmit}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Rename Folder</DialogTitle>
+        <DialogTitle
+          style={{ cursor: 'move' }}
+          id="draggable-dialog-title"
+        >
+          Rename Folder
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
             Current path: {path}<br />
