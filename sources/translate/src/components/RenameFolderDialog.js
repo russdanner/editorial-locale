@@ -9,7 +9,7 @@ import Draggable from 'react-draggable';
 import Paper from '@mui/material/Paper';
 import DialogContentText from '@mui/material/DialogContentText';
 
-import StyledButton from './StyledButton';
+import { StyledCancelButton, StyledMainButton } from './StyledButton';
 
 import StudioAPI from '../api/studio';
 
@@ -84,20 +84,20 @@ export default function RenameFolderDialog({ open, onClose, path }) {
           />
         </DialogContent>
         <DialogActions>
-          <StyledButton
+          <StyledCancelButton
             variant="outlined"
             color="primary"
             onClick={closeWithoutSubmit}
           >
             Cancel
-          </StyledButton>
-          <StyledButton
+          </StyledCancelButton>
+          <StyledMainButton
             variant="contained"
             color="primary"
             onClick={onSubmit}
           >
             Rename
-          </StyledButton>
+          </StyledMainButton>
         </DialogActions>
       </StyledDialog>
     </div>

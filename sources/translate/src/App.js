@@ -27,7 +27,7 @@ import { styled } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
 import TreeView from './components/TreeView';
-import StyledButton from './components/StyledButton';
+import { StyledCancelButton, StyledMainButton } from './components/StyledButton';
 
 import { copyDestSub } from './service/subscribe';
 import StudioAPI from './api/studio';
@@ -225,22 +225,22 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <StyledButton
+          <StyledCancelButton
               variant="outlined"
               color="primary"
               onClick={handleClose}
               disabled={isProcessing}
             >
               Cancel
-            </StyledButton>
-          <StyledButton
+            </StyledCancelButton>
+          <StyledMainButton
             variant="contained"
             color="primary"
             onClick={handleCopy}
             disabled={isProcessing || !rootDir}
           >
             Translate
-          </StyledButton>
+          </StyledMainButton>
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
