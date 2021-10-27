@@ -14,12 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 import CookieHelper from '../helpers/cookie';
 
 const API_GET_ITEM_TREE = '/studio/api/1/services/api/1/content/get-items-tree.json';
 const API_GET_ITEM = '/studio/api/1/services/api/1/content/get-item.json';
 const API_CLIPBOARD_COPY = '/studio/api/1/services/api/1/clipboard/copy-item.json';
 const API_CLIPBOARD_PASTE = '/studio/api/1/services/api/1/clipboard/paste-item.json';
+const API_CREATE_FOLDER = '/studio/api/1/services/api/1/content/create-folder.json';
+const API_RENAME_FOLDER = '/studio/api/1/services/api/1/content/rename-folder.json';
 
 const StudioAPI = {
   origin() {
@@ -126,6 +129,42 @@ const StudioAPI = {
 
     return null;
   },
+  async createFolder(path, name) {
+    const res = await fetch(`${StudioAPI.origin()}${API_CREATE_FOLDER}?site=${StudioAPI.siteId()}&path=${path}&name=${name}`, {
+      method: 'POST',
+      headers: {
+        'x-xsrf-token': StudioAPI.xsrfToken(),
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      credentials: 'include',
+      body: '',
+    });
+
+    if (res.status === 200) {
+      const data = await res.json();
+      return data;
+    }
+
+    return false;
+  },
+  async renameFolder(path, name) {
+    const res = await fetch(`${StudioAPI.origin()}${API_RENAME_FOLDER}?site=${StudioAPI.siteId()}&path=${path}&name=${name}`, {
+      method: 'POST',
+      headers: {
+        'x-xsrf-token': StudioAPI.xsrfToken(),
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      credentials: 'include',
+      body: '',
+    });
+
+    if (res.status === 200) {
+      const data = await res.json();
+      return data;
+    }
+
+    return false;
+  }
 };
 
 export default StudioAPI;

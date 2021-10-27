@@ -15,7 +15,6 @@
  */
 
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -28,6 +27,7 @@ import { styled } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
 import TreeView from './components/TreeView';
+import StyledButton from './components/StyledButton';
 
 import { copyDestSub } from './service/subscribe';
 import StudioAPI from './api/studio';
@@ -98,10 +98,7 @@ const StyledPopupButton = styled('a')(({ theme }) => ({
   }
 }));
 
-const StyledActionButton = styled(Button)(({ theme }) => ({
-  textTransform: 'capitalize',
-  minWidth: '120px',
-}));
+
 
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -228,22 +225,22 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <StyledActionButton
+          <StyledButton
+              variant="outlined"
+              color="primary"
+              onClick={handleClose}
+              disabled={isProcessing}
+            >
+              Cancel
+            </StyledButton>
+          <StyledButton
             variant="contained"
             color="primary"
             onClick={handleCopy}
             disabled={isProcessing || !rootDir}
           >
             Translate
-          </StyledActionButton>
-          <StyledActionButton
-            variant="outlined"
-            color="primary"
-            onClick={handleClose}
-            disabled={isProcessing}
-          >
-            Cancel
-          </StyledActionButton>
+          </StyledButton>
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>

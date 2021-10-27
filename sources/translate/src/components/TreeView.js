@@ -12,6 +12,9 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 import { StyledTableCell, StyledTableRow } from './TableStyle';
+import ActionMenu from './ActionMenu';
+import NewFolderDialog from './NewFolderDialog';
+import RenameFolderDialog from './RenameFolderDialog';
 
 import StudioAPI from '../api/studio';
 import { copyDestSub } from '../service/subscribe';
@@ -20,6 +23,10 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
   const [nodes, setNodes] = React.useState([]);
   const [expanded, setExpanded] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
+  const [rightClickAnchorEl, setRightClickAnchorEl] = React.useState(null);
+  const [rightClickPosition, setRightClickPosition] = React.useState({});
+  const [newFolderDialogOpen, setNewFolderDialogOpen] = React.useState(false);
+  const [renameFolderDialogOpen, setRenameFolderDialogOpen] = React.useState(false);
 
   const handleToggle = (event, nodeIds) => {
     setExpanded(nodeIds);
@@ -125,12 +132,23 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
    */
   const renderTree = (nodes) => {
     return (
-      <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+      <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name} onContextMenu={(event) => onNodeContextMenuClick(event,nodes.id)}>
         {(Array.isArray(nodes.children) && nodes.children.length > 0)
           ? nodes.children.map((node) => renderTree(node))
           : (<TreeItem />)}
       </TreeItem>
     )
+  };
+
+  const onNodeContextMenuClick = (event, nodeId) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setRightClickAnchorEl(event.currentTarget);
+    setRightClickPosition({
+      pageX: event.pageX,
+      pageY: event.pageY,
+      path: nodeId
+    });
   };
 
   return (
@@ -167,6 +185,29 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
         {renderTree(nodes)}
       </TreeView>
       </Grid>
+      <ActionMenu
+        anchorEl={rightClickAnchorEl}
+        onClose={() => setRightClickAnchorEl(null)}
+        position={rightClickPosition}
+        onCreateFolder={() => {
+          setRightClickAnchorEl(null);
+          setNewFolderDialogOpen(true);
+        }}
+        onRenameFolder={() => {
+          setRightClickAnchorEl(null);
+          setRenameFolderDialogOpen(true);
+        }}
+      />
+      <NewFolderDialog
+        open={newFolderDialogOpen}
+        onClose={() => setNewFolderDialogOpen(false)}
+        path={rightClickPosition.path}
+      />
+      <RenameFolderDialog
+        open={renameFolderDialogOpen}
+        onClose={() => setRenameFolderDialogOpen(false)}
+        path={rightClickPosition.path}
+      />
     </>
   );
 }
