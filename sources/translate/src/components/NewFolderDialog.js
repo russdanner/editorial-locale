@@ -56,6 +56,7 @@ export default function NewFolderDialog({ open, onClose, path }) {
             variant="contained"
             color="primary"
             onClick={onSubmit}
+            disabled={!folderName}
           >
             Create
           </StyledMainButton>

@@ -61,6 +61,7 @@ export default function RenameFolderDialog({ open, onClose, path }) {
             variant="contained"
             color="primary"
             onClick={onSubmit}
+            disabled={!folderName}
           >
             Rename
           </StyledMainButton>
