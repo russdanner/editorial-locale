@@ -261,7 +261,7 @@ export default function App() {
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Snackbar open={alert && alert.open} autoHideDuration={6000} onClose={onCloseAlert}>
+        <Snackbar open={alert && alert.open} autoHideDuration={4000} onClose={onCloseAlert}>
           <Alert onClose={onCloseAlert} severity={alert.severity} sx={{ width: '100%' }}>
             {alert.message}
           </Alert>
