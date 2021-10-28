@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
 const StyledActionButton = styled(Button)(({ theme }) => ({
-  textTransform: 'capitalize',
+  textTransform: 'none',
   minWidth: '120px',
 }));
 

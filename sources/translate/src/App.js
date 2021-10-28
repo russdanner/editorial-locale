@@ -23,6 +23,7 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Tooltip from '@mui/material/Tooltip';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
@@ -139,7 +140,7 @@ export default function App() {
      }));
   }
 
-  const handleCopy = async (event) => {
+  const handleCopy = async (event, shouldOpenEditForm) => {
     event.preventDefault();
 
     setIsProcessing(true);
@@ -158,7 +159,7 @@ export default function App() {
           });
         } else {
           // Open edit form if there is only 1 item
-          if (paths.length === 1) {
+          if (shouldOpenEditForm && paths.length === 1) {
             StudioAPI.openEditForm(selectedItems[0].contentType, pastePath);
           }
         }
@@ -180,6 +181,11 @@ export default function App() {
     setIsProcessing(false);
     setOpen(false);
   }
+
+  const handleCopyAndOpen = (event) => {
+    const shouldOpenEditForm = true;
+    handleCopy(event, shouldOpenEditForm);
+  };
 
   React.useEffect(() => {
     const handleContentMenuChanged = () => {
@@ -242,14 +248,26 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <StyledMainButton
+          <Tooltip title="Translate and close">
+            <StyledMainButton
+                variant="contained"
+                color="primary"
+                onClick={handleCopy}
+                disabled={isProcessing || !rootDir}
+              >
+                Translate
+              </StyledMainButton>
+          </Tooltip>
+          <Tooltip title="Translate and open edit form">
+            <StyledMainButton
               variant="contained"
               color="primary"
-              onClick={handleCopy}
+              onClick={handleCopyAndOpen}
               disabled={isProcessing || !rootDir}
             >
-              Translate
+              Translate and open
             </StyledMainButton>
+          </Tooltip>
           <StyledCancelButton
               variant="outlined"
               color="primary"
