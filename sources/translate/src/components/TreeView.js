@@ -158,6 +158,7 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
   const onNodeContextMenuClick = (event, nodeId) => {
     event.stopPropagation();
     event.preventDefault();
+    setSelected(nodeId);
     setRightClickAnchorEl(event.currentTarget);
     setRightClickPosition({
       pageX: event.pageX,
