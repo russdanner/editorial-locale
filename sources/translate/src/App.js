@@ -248,26 +248,26 @@ export default function App() {
           }
         </DialogContent>
         <DialogActions>
-          <Tooltip title="Translate and close">
-            <StyledMainButton
+          {
+            selectedItems.length === 1 && (
+              <StyledMainButton
                 variant="contained"
                 color="primary"
-                onClick={handleCopy}
+                onClick={handleCopyAndOpen}
                 disabled={isProcessing || !rootDir}
               >
-                Translate
+                Translate and open
               </StyledMainButton>
-          </Tooltip>
-          <Tooltip title="Translate and open edit form">
-            <StyledMainButton
+            )
+          }
+          <StyledMainButton
               variant="contained"
               color="primary"
-              onClick={handleCopyAndOpen}
+              onClick={handleCopy}
               disabled={isProcessing || !rootDir}
             >
-              Translate and open
-            </StyledMainButton>
-          </Tooltip>
+              Translate
+          </StyledMainButton>
           <StyledCancelButton
               variant="outlined"
               color="primary"
