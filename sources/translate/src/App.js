@@ -23,7 +23,6 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import Tooltip from '@mui/material/Tooltip';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import SelectedItems from './components/SelectedItems';
@@ -35,7 +34,11 @@ import StudioAPI from './api/studio';
 
 const DEFAULT_WEBSITE_PATH = '/site/website';
 const DEFAULT_COMPONENT_PATH = '/site/components';
+const ALERT_AUTO_HIDE_DURATION = 4000;
 
+/**
+ * Theme style to align with Crafter CMS 3.1.x
+ */
 const customTheme = createTheme({
   palette: {
     primary: {
@@ -99,6 +102,10 @@ const MixedSelectedItems = () => {
   );
 }
 
+/**
+ * Context menu button to open copy dialog
+ * Align with Crafter CMS 3.1.x context menu items
+ */
 const StyledPopupButton = styled('a')(({ theme }) => ({
   cursor: 'pointer',
   padding: '16.5px 10px 15.5px 0px !important',
@@ -278,7 +285,7 @@ export default function App() {
         </DialogActions>
       </Dialog>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Snackbar open={alert && alert.open} autoHideDuration={4000} onClose={onCloseAlert}>
+        <Snackbar open={alert && alert.open} autoHideDuration={ALERT_AUTO_HIDE_DURATION} onClose={onCloseAlert}>
           <Alert onClose={onCloseAlert} severity={alert.severity} sx={{ width: '100%' }}>
             {alert.message}
           </Alert>

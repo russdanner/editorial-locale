@@ -57,11 +57,11 @@ const plugins = [
     targets: [{ src: 'build/*', dest: '../../config/studio/plugins/context-nav/translate' }],
     hook: 'writeBundle'
   }),
-  commit({
-    targets: [
-      '../../config/studio/plugins/context-nav/translate/index.js'
-    ]
-  })
+  // commit({
+  //   targets: [
+  //     '../../config/studio/plugins/context-nav/translate/index.js'
+  //   ]
+  // })
 ];
 
 const external = [

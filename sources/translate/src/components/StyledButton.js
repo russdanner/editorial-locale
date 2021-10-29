@@ -44,4 +44,3 @@ const StyledCancelButton = styled(StyledActionButton)(({ theme }) => ({
 }));
 
 export { StyledCancelButton, StyledMainButton };
-

@@ -39,4 +39,3 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export { StyledTableCell, StyledTableRow };
-

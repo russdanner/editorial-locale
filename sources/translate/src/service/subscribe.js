@@ -21,4 +21,3 @@ const copyDestSub = new Subject('');
 export {
   copyDestSub,
 };
-
