@@ -101,10 +101,7 @@ const MixedSelectedItems = () => {
 
 const StyledPopupButton = styled('a')(({ theme }) => ({
   cursor: 'pointer',
-  paddingLeft: 0,
-  paddingRight: '10px',
-  paddingTop: '16.5px',
-  paddingBottom: '16.5px',
+  padding: '16.5px 10px 15.5px 0px !important',
   color: '#777',
   lineHeight: '17px',
   position: 'relative',
