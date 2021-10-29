@@ -143,10 +143,14 @@ export default function App() {
   const handleCopy = async (event, shouldOpenEditForm) => {
     event.preventDefault();
 
-    setIsProcessing(true);
     const selectedItems = StudioAPI.getSelectedItems();
-    const paths = selectedItems.map(item => item.path);
 
+    if (isProcessing || !desPath || !selectedItems.length) {
+      return;
+    }
+
+    setIsProcessing(true);
+    const paths = selectedItems.map(item => item.path);
     for (let i =0; i < paths.length; i += 1) {
       if (await StudioAPI.clipboardCopy(paths[i])) {
         const pastePath = await StudioAPI.clipboardPaste(desPath);
@@ -155,7 +159,7 @@ export default function App() {
           setAlert({
             open: true,
             severity: 'error',
-            message: `There is an error while traslating file: ${paths[i]}`,
+            message: `There is an error while copying file: ${paths[i]}`,
           });
         } else {
           // Open edit form if there is only 1 item
@@ -176,7 +180,7 @@ export default function App() {
     setAlert({
       open: true,
       severity: 'success',
-      message: 'Selected files are translated to destination folder.',
+      message: 'Selected files are copied to destination folder.',
     });
     setIsProcessing(false);
     setOpen(false);
@@ -218,7 +222,7 @@ export default function App() {
       {selectedItems.length > 0 && (
         <li className="acn-link" onClick={() => setOpen(true)}>
           <StyledPopupButton className="ItemTranslate cursor">
-            Translate
+            Copy
           </StyledPopupButton>
           <img id="itemtranslate-loading" src="/studio/static-assets/themes/cstudioTheme/images/treeview-loading.gif" />
         </li>
@@ -231,7 +235,7 @@ export default function App() {
         aria-describedby="alert-dialog-description"
         onClose={handleClose}
       >
-        <DialogTitle id="alert-dialog-title">Translate</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Copy</DialogTitle>
         <DialogContent>
           {selectedItems.length === 0 ?
             <NoSelectedItems /> :
@@ -254,9 +258,9 @@ export default function App() {
                 variant="contained"
                 color="primary"
                 onClick={handleCopyAndOpen}
-                disabled={isProcessing || !rootDir}
+                disabled={isProcessing || !rootDir || !desPath}
               >
-                Translate and open
+                Copy and open
               </StyledMainButton>
             )
           }
@@ -264,9 +268,9 @@ export default function App() {
               variant="contained"
               color="primary"
               onClick={handleCopy}
-              disabled={isProcessing || !rootDir}
+              disabled={isProcessing || !rootDir || !desPath}
             >
-              Translate
+              Copy
           </StyledMainButton>
           <StyledCancelButton
               variant="outlined"

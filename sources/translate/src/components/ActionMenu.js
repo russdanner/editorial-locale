@@ -61,7 +61,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function ActionMenu({ anchorEl, onClose, position, onCreateFolder, onRenameFolder }) {
+export default function ActionMenu({ anchorEl, onClose, position, onCreateFolder, onRenameFolder, onContextMenu }) {
   const open = Boolean(anchorEl);
   const { pageX, pageY } = position;
 
@@ -72,6 +72,7 @@ export default function ActionMenu({ anchorEl, onClose, position, onCreateFolder
         anchorPosition={{ top: pageY, left: pageX }}
         open={open}
         onClose={onClose}
+        onContextMenu={(event) => onContextMenu(event)}
       >
         <MenuItem onClick={onCreateFolder} disableRipple>
           <CreateNewFolderIcon />

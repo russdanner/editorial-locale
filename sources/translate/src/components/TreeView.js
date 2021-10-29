@@ -215,7 +215,6 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
         >
         {renderTree(nodes)}
       </TreeView>
-      </Grid>
       <ActionMenu
         anchorEl={rightClickAnchorEl}
         onClose={() => setRightClickAnchorEl(null)}
@@ -228,7 +227,12 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
           setRightClickAnchorEl(null);
           setRenameFolderDialogOpen(true);
         }}
+        onContextMenu={(event) => {
+          setRightClickAnchorEl(null);
+          event.preventDefault();
+        }}
       />
+      </Grid>
       <NewFolderDialog
         open={newFolderDialogOpen}
         onClose={onCreateFolderClose}
