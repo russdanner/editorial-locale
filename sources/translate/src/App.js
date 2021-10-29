@@ -116,8 +116,6 @@ const StyledPopupButton = styled('a')(({ theme }) => ({
   }
 }));
 
-
-
 export default function App() {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({});

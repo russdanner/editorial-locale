@@ -18,19 +18,15 @@ import { styled, alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import Popover from '@mui/material/Popover';
+import Popper from '@mui/material/Popper';
+import Paper from '@mui/material/Paper';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import MenuList from '@mui/material/MenuList';
+import Grow from '@mui/material/Grow';
 
 const StyledMenu = styled((props) => (
-  <Popover
+  <Popper
     elevation={0}
-    anchorOrigin={{
-      vertical: 'top',
-      horizontal: 'left',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'left',
-    }}
     {...props}
   />
 ))(({ theme }) => ({
@@ -65,23 +61,73 @@ export default function ActionMenu({ anchorEl, onClose, position, onCreateFolder
   const open = Boolean(anchorEl);
   const { pageX, pageY } = position;
 
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      onClose();
+    } else if (event.key === 'Escape') {
+      onClose();
+    }
+  }
+
+  const handleClose = (event) => {
+    if (anchorEl.current && anchorEl.current.contains(event.target)) {
+      return;
+    }
+
+    onClose();
+  };
+
   return (
     <div>
       <StyledMenu
-        anchorReference="anchorPosition"
-        anchorPosition={{ top: pageY, left: pageX }}
+        anchorEl={{
+          getBoundingClientRect: () => ({
+            width: 0,
+            height: 0,
+            top: pageY,
+            right: pageX,
+            bottom: pageY,
+            left: pageX
+          })
+        }}
         open={open}
         onClose={onClose}
         onContextMenu={(event) => onContextMenu(event)}
+        role={undefined}
+        placement="bottom-start"
+        transition
+        disablePortal
       >
-        <MenuItem onClick={onCreateFolder} disableRipple>
-          <CreateNewFolderIcon />
-          Create new folder
-        </MenuItem>
-        <MenuItem onClick={onRenameFolder} disableRipple>
-          <BorderColorIcon />
-          Rename
-        </MenuItem>
+         {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={onCreateFolder} disableRipple>
+                      <CreateNewFolderIcon />
+                      Create new folder
+                    </MenuItem>
+                    <MenuItem onClick={onRenameFolder} disableRipple>
+                      <BorderColorIcon />
+                      Rename
+                    </MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
       </StyledMenu>
     </div>
   );

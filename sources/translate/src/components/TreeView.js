@@ -37,7 +37,7 @@ import { copyDestSub } from '../service/subscribe';
 export default function FileSystemNavigator({ selectedItems, rootDir }) {
   const [nodes, setNodes] = React.useState([]);
   const [expanded, setExpanded] = React.useState([]);
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = React.useState('');
   const [rightClickAnchorEl, setRightClickAnchorEl] = React.useState(null);
   const [rightClickPosition, setRightClickPosition] = React.useState({});
   const [newFolderDialogOpen, setNewFolderDialogOpen] = React.useState(false);
@@ -194,10 +194,10 @@ export default function FileSystemNavigator({ selectedItems, rootDir }) {
             </TableHead>
             <TableBody>
               <StyledTableRow
-                key={selected}
+                key={selected ? selected : 'root'}
               >
                 <StyledTableCell component="th" scope="row">
-                  {selected}
+                  {selected ? selected : 'Select a destination path'}
                 </StyledTableCell>
               </StyledTableRow>
             </TableBody>
