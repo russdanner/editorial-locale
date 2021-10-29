@@ -14,15 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
-import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 import MenuList from '@mui/material/MenuList';
 import Grow from '@mui/material/Grow';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { styled, alpha } from '@mui/material/styles';
 
 const StyledMenu = styled((props) => (
   <Popper

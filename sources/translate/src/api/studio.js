@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 import CookieHelper from '../helpers/cookie';
 
 const API_GET_ITEM_TREE = '/studio/api/1/services/api/1/content/get-items-tree.json';
