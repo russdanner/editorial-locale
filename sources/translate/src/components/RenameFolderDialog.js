@@ -27,6 +27,7 @@ import StudioAPI from '../api/studio';
 
 export default function RenameFolderDialog({ open, onClose, path }) {
   const [folderName, setFolderName] = React.useState('');
+  const [isProcessing, setIsProcessing] = React.useState(false);
 
   React.useEffect(() => {
     if (path) {
@@ -36,8 +37,10 @@ export default function RenameFolderDialog({ open, onClose, path }) {
 
   const onSubmit = async () => {
     if (folderName && path) {
+      setIsProcessing(true);
       const res = await StudioAPI.renameFolder(path, folderName);
       onClose(res);
+      setIsProcessing(false);
     }
   };
 
@@ -80,7 +83,7 @@ export default function RenameFolderDialog({ open, onClose, path }) {
             variant="contained"
             color="primary"
             onClick={onSubmit}
-            disabled={!folderName}
+            disabled={!folderName || isProcessing}
           >
             Rename
           </StyledMainButton>

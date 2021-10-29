@@ -27,12 +27,15 @@ import StudioAPI from '../api/studio';
 
 export default function NewFolderDialog({ open, onClose, path }) {
   const [folderName, setFolderName] = React.useState('');
+  const [isProcessing, setIsProcessing] = React.useState(false);
 
   const onSubmit = async () => {
     if (folderName && path) {
+      setIsProcessing(true);
       const res = await StudioAPI.createFolder(path, folderName);
       setFolderName('');
       onClose(res);
+      setIsProcessing(false);
     }
   };
 
@@ -76,7 +79,7 @@ export default function NewFolderDialog({ open, onClose, path }) {
             variant="contained"
             color="primary"
             onClick={onSubmit}
-            disabled={!folderName}
+            disabled={!folderName || isProcessing}
           >
             Create
           </StyledMainButton>
