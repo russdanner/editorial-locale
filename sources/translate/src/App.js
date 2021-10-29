@@ -122,7 +122,7 @@ export default function App() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
+    if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
       setOpen(false);
     }
   };

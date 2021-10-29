@@ -62,10 +62,8 @@ export default function ActionMenu({ anchorEl, onClose, position, onCreateFolder
   const { pageX, pageY } = position;
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (event.key === 'Tab' || event.key === 'Escape') {
       event.preventDefault();
-      onClose();
-    } else if (event.key === 'Escape') {
       onClose();
     }
   }
