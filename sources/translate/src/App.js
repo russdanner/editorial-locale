@@ -185,12 +185,12 @@ export default function App() {
       message: 'Selected files are copied to destination folder.',
     });
     setIsProcessing(false);
-    setOpen(false);
   }
 
   const handleCopyAndOpen = (event) => {
     const shouldOpenEditForm = true;
     handleCopy(event, shouldOpenEditForm);
+    setOpen(false);
   };
 
   React.useEffect(() => {
@@ -262,7 +262,7 @@ export default function App() {
                 onClick={handleCopyAndOpen}
                 disabled={isProcessing || !rootDir || !desPath}
               >
-                Copy and open
+                Copy and Edit
               </StyledMainButton>
             )
           }
@@ -280,7 +280,7 @@ export default function App() {
               onClick={handleClose}
               disabled={isProcessing}
             >
-              Cancel
+              Close
             </StyledCancelButton>
         </DialogActions>
       </Dialog>
