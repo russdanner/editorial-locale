@@ -128,9 +128,15 @@ export default function App() {
   const [desPath, setDesPath] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const resetState = () => {
+    setDesPath('');
+    setIsProcessing(false);
+    setOpen(false);
+  };
+
   const handleClose = (event, reason) => {
     if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
-      setOpen(false);
+      resetState();
     }
   };
 
